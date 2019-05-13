@@ -3,6 +3,7 @@ public class Company extends Profile {
 	private String name;
 	private double nip;
 	
+	//Konstruktor
 	public Company(String name, double nip, double phone, String email, String country,
 			String city, String street,	int numberOfBuilding, String postCode) {
 		this.name = name;
