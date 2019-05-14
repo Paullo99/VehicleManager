@@ -1,3 +1,5 @@
+package Classes;
+
 public class Company extends Profile {
 
 	private String name;
