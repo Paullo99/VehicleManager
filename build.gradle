@@ -33,7 +33,7 @@ repositories {
     jcenter()
 }
 task runAllTests {
-    println 'nowrrtrt I am building JAR file, in theorydd'
+    //compile /src/main/java/JavaDB
 }
 
 task buildJar(dependsOn: runAllTests) {
