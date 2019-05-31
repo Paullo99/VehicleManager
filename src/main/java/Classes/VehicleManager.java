@@ -1,8 +1,12 @@
 package Classes;
+
+import Views.LoginWindow;
+
 public class VehicleManager {
 
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
-	
-		System.out.println("Siema, Wszystko dzia³a bo siê kompiluje!");
+		LoginWindow loginWindow = new LoginWindow();
+		loginWindow.show();
 	}
 }
