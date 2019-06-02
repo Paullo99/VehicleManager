@@ -14,6 +14,8 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+
 import javax.swing.JPasswordField;
 
 public class LoginWindow extends JFrame {
@@ -49,7 +51,9 @@ public class LoginWindow extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+		/*
+		 * otwiera okno rejestracji - RegisterWindow.java
+		 */
 		JButton btnRegister = new JButton("Zarejestruj si\u0119");
 		btnRegister.addMouseListener(new MouseAdapter() {
 			@SuppressWarnings("deprecation")
@@ -62,8 +66,17 @@ public class LoginWindow extends JFrame {
 		});
 		btnRegister.setBounds(170, 177, 101, 23);
 		contentPane.add(btnRegister);
-		
+		/*
+		 * Przycisk odpowiadaj¹cy za ³¹czenie z Baz¹ danych i sprawdzanie poprawnoœci danych logowania
+		 */
 		JButton btnLogin = new JButton("Zaloguj si\u0119");
+		btnLogin.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JavaDB database = new JavaDB();
+				Connection connection = database.connectToDB();
+			}
+		});
 		btnLogin.setBounds(317, 95, 90, 52);
 		contentPane.add(btnLogin);
 		
