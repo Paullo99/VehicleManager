@@ -8,7 +8,7 @@ import java.sql.Statement;
 public class JavaDB {
  
 	// Nazwa bazy
-    final static String baseName = "VehicleManager";
+    public final static String baseName = "VehicleManager";
     
     //konstruktor bezparametrowy
     public JavaDB() {  }
@@ -16,6 +16,7 @@ public class JavaDB {
     /**
      * Metoda odpowiedzialna za po³¹czenie z baz¹
      * jeœli bazy nie ma to zostaje utworzona
+     * zwraca obiekt po³¹czenia
      */
     public static Connection connectToDB() {
         Connection connection = null;
@@ -34,7 +35,6 @@ public class JavaDB {
     /**
      * Metoda odpowiedzialna za dodawanie danych do bazy
      * @param takson
-     * @param baza
      *//*
     public static void addDataToDB(Takson takson) {
 

@@ -1,19 +1,10 @@
 package Views;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JToolBar;
-import javax.swing.JLabel;
-import java.awt.List;
-import javax.swing.JComboBox;
-import javax.swing.JTable;
-import javax.swing.JButton;
-import java.awt.FlowLayout;
-import javax.swing.SwingConstants;
 
 public class MainWindow extends JFrame {
 

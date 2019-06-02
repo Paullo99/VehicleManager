@@ -1,28 +1,31 @@
 package Views;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.GridLayout;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.Statement;
+import java.awt.FlowLayout;
+import DB.JavaDB;
 
 public class RegisterWindow extends JFrame {
 
-	private JPanel contentPane;
-
 	/**
-	 * Launch the application.
+	 * 
 	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	//main
 	public static void main() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					RegisterWindow frame = new RegisterWindow();
+					RegisterWindow frame = new RegisterWindow(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,11 +41,10 @@ public class RegisterWindow extends JFrame {
 		setTitle("Rejestracja");
 		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 1162, 777);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
 		
 		JButton btnTest = new JButton("Rejestruj");
 		btnTest.addMouseListener(new MouseAdapter() {
@@ -50,15 +52,39 @@ public class RegisterWindow extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				RegisterWindow.this.dispose();
-				parentFrame.show();
+				if((parentFrame!=null)) {parentFrame.show();}
 			}
 		});
-		btnTest.setBounds(10, 190, 414, 42);
+		
+		contentPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		contentPane.add(btnTest);
 	}
 
-	public RegisterWindow() {
-		// TODO Auto-generated constructor stub
+	/*
+	 * Metoda odpowiadaj¹ca za dodanie nowego u¿ytkownika do bazy danych
+	 */
+	public void addNewUser() {
+	    try {
+	    	JavaDB database = new JavaDB();
+			Connection connection = JavaDB.connectToDB();
+	        Statement stat = connection.createStatement();
+	        String dodajSQL = "INSERT INTO User "/*
+	                + "VALUES ('',"
+	                +  + ","
+	                + "'" + takson.getRodzaj() + "',"
+	                + "'" + takson.getGatunek() + "',"
+	                + takson.getN2() + ","
+	                + takson.getX() + ","
+	                + "'" + takson.getUwagi() + "'" 
+	                + "  );"*/;
+	        stat.executeUpdate(dodajSQL);
+	        stat.close();
+	        connection.close();
+	        // Komunikat i wydrukowanie koñcowej formy polecenia SQL
+	        System.out.println("Polecenie: \n" + dodajSQL + "\n wykonane.");
+	    } catch (Exception e) {
+	        System.out.println("Nie mogê dodaæ danych " + e.getMessage());
+	    }
 	}
-
 }
+
