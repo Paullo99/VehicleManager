@@ -6,11 +6,11 @@ public class PhysicalUser extends Profile {
 	private String name;
 	private String surname;
 	private Date dateOfBirth;
-	private double pesel;
+	private String pesel;
 	
-	public PhysicalUser(String name, String surname, Date dateOfBirth, double pesel,
-			double phone, String email, String country, String city, String street,
-			int numberOfBuilding, String postCode) {
+	public PhysicalUser(String name, String surname, Date dateOfBirth, String pesel,
+			String phone, String email, String country, String city, String street,
+			int numberOfBuilding, String postCode, String login, String password) {
 		this.name = name;
 		this.surname = surname;
 		this.dateOfBirth = dateOfBirth;
@@ -22,6 +22,8 @@ public class PhysicalUser extends Profile {
 		this.street = street;
 		this.numberOfBuilding = numberOfBuilding;
 		this.postCode = postCode;
+		this.login = login;
+		this.password = password;
 		
 	}
 
@@ -37,7 +39,7 @@ public class PhysicalUser extends Profile {
 		return dateOfBirth;
 	}
 
-	public double getPesel() {
+	public String getPesel() {
 		return pesel;
 	}
 }

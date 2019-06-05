@@ -2,16 +2,18 @@ package Classes;
 
 public abstract class Profile implements IProfile {
 
-	protected double phone;
+	protected String phone;
 	protected String email;
 	protected String country;
 	protected String city;
 	protected String street;
 	protected int numberOfBuilding;
 	protected String postCode;
+	protected String login;
+	protected String password;
 	
 	@Override
-	public double getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 	
@@ -43,5 +45,15 @@ public abstract class Profile implements IProfile {
 	@Override
 	public String getPostCode() {
 		return postCode;
+	}
+
+	@Override
+	public String getLogin() {
+		return login;
+	}
+
+	@Override
+	public String getPassword() {
+		return password;
 	}
 }

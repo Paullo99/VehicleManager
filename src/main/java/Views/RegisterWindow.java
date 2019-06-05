@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.Statement;
 
 import javax.swing.ButtonGroup;
@@ -16,6 +17,9 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import Classes.Company;
+import Classes.PhysicalUser;
+import Classes.Profile;
 import DB.JavaDB;
 
 public class RegisterWindow extends JFrame {
@@ -57,6 +61,7 @@ public class RegisterWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("deprecation")
 	public RegisterWindow(JFrame parentFrame) {
 		setTitle("Rejestracja");
 		setAlwaysOnTop(true);
@@ -66,19 +71,12 @@ public class RegisterWindow extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JButton btnTest = new JButton("Rejestruj");
-		btnTest.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnTest.setBounds(701, 633, 119, 44);
-		btnTest.addMouseListener(new MouseAdapter() {
-			@SuppressWarnings("deprecation")
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				RegisterWindow.this.dispose();
-				if((parentFrame!=null)) {parentFrame.show();}
-			}
-		});
+		JButton btnRegister = new JButton("Rejestruj");
+		btnRegister.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnRegister.setBounds(701, 633, 119, 44);
+		
 		contentPane.setLayout(null);
-		contentPane.add(btnTest);
+		contentPane.add(btnRegister);
 		
 		textFieldLogin = new JTextField();
 		textFieldLogin.setBounds(450, 111, 174, 20);
@@ -202,6 +200,26 @@ public class RegisterWindow extends JFrame {
 		contentPane.add(lblFirmName);
 		lblFirmName.hide();
 		
+		textFieldNip = new JTextField();
+		textFieldNip.setColumns(10);
+		textFieldNip.setBounds(450, 244, 174, 20);
+		contentPane.add(textFieldNip);
+		textFieldNip.hide();
+		
+		textFieldPesel = new JTextField();
+		textFieldPesel.setColumns(10);
+		textFieldPesel.setBounds(450, 523, 174, 20);
+		contentPane.add(textFieldPesel);
+		
+		textFieldFirmName = new JTextField();
+		textFieldFirmName.setColumns(10);
+		textFieldFirmName.setBounds(450, 213, 174, 20);
+		contentPane.add(textFieldFirmName);
+		textFieldFirmName.hide();
+		
+		textFieldNip.hide();
+		
+		//radio button odpowiadaj¹cy za ukrywanie pól dla u¿ytkowników a pokazywanie dla firm
 		JRadioButton rdbtnCompany = new JRadioButton("Firma");
 		rdbtnCompany.addMouseListener(new MouseAdapter() {
 			@Override
@@ -222,6 +240,7 @@ public class RegisterWindow extends JFrame {
 		rdbtnCompany.setBounds(531, 175, 109, 23);
 		contentPane.add(rdbtnCompany);
 		
+		//radio button odpowiadaj¹cy za ukrywanie pól dla firm a pokazywanie dla u¿ytkowników
 		JRadioButton rdbtnPhysicalUser = new JRadioButton("Osoba fizyczna");
 		rdbtnPhysicalUser.addMouseListener(new MouseAdapter() {
 			@Override
@@ -246,24 +265,31 @@ public class RegisterWindow extends JFrame {
 		typeOfProfile.add(rdbtnPhysicalUser);
 		typeOfProfile.add(rdbtnCompany);
 		
-		textFieldNip = new JTextField();
-		textFieldNip.setColumns(10);
-		textFieldNip.setBounds(450, 244, 174, 20);
-		contentPane.add(textFieldNip);
-		textFieldNip.hide();
+		//dodawanie nowego u¿ytkownika po klikniêciu przycisku Zarejestruj
+		btnRegister.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				char[] pesel = textFieldPesel.getText().toCharArray();
+				int year = Integer.parseInt(""+pesel[0]+pesel[1]);
+				int month = Integer.parseInt(""+pesel[2]+pesel[3])-1;
+				int day = Integer.parseInt(""+pesel[4]+pesel[5]);
+				Date dateOfBirth = new Date(year, month, day);
+				if(rdbtnPhysicalUser.isSelected()) {
+					PhysicalUser userData = new PhysicalUser( textFieldVorname.getText(), textFieldName.getText(), dateOfBirth, textFieldPesel.getText(), textFieldPhone.getText(), textFieldEmail.getText(), textFieldCountry.getText(), textFieldCity.getText(), textFieldStreet.getText(), Integer.parseInt(textFieldNumberOfBuilding.getText()), textFieldPostCode.getText(), textFieldLogin.getText(), textFieldPassword.getText());
+					addNewPhysicalUser(userData);
+				}
+				else {
+					//tutaj taki sam kod dla Company - uzupe³niæ parametry
+					//Company companyData = new Company();
+					//addNewCompany(companyData);
+				}
+				
+				//zamkniêcie bie¿¹cego okna i otwarcie poprzedniego
+				RegisterWindow.this.dispose();
+				if((parentFrame!=null)) {parentFrame.show();}
+			}
+		});
 		
-		textFieldPesel = new JTextField();
-		textFieldPesel.setColumns(10);
-		textFieldPesel.setBounds(450, 523, 174, 20);
-		contentPane.add(textFieldPesel);
-		
-		textFieldFirmName = new JTextField();
-		textFieldFirmName.setColumns(10);
-		textFieldFirmName.setBounds(450, 213, 174, 20);
-		contentPane.add(textFieldFirmName);
-		textFieldFirmName.hide();
-		
-		textFieldNip.hide();
 		
 		
 	}
@@ -271,28 +297,45 @@ public class RegisterWindow extends JFrame {
 	/*
 	 * Metoda odpowiadaj¹ca za dodanie nowego u¿ytkownika do bazy danych
 	 */
-	public void addNewUser() {
+	public void addNewPhysicalUser(PhysicalUser userData) {
 	    try {
-	    	JavaDB database = new JavaDB();
 			Connection connection = JavaDB.connectToDB();
 	        Statement stat = connection.createStatement();
-	        String dodajSQL = "INSERT INTO User "/*
-	                + "VALUES ('',"
-	                +  + ","
-	                + "'" + takson.getRodzaj() + "',"
-	                + "'" + takson.getGatunek() + "',"
-	                + takson.getN2() + ","
-	                + takson.getX() + ","
-	                + "'" + takson.getUwagi() + "'" 
-	                + "  );"*/;
-	        stat.executeUpdate(dodajSQL);
+	        String SQL = "INSERT INTO User "
+	                + "VALUES (NULL,"
+	                + "'" + userData.getName() + "',"
+	                + "'" + userData.getSurname() + "',"
+	                + "'" + userData.getPhone() + "',"
+	                + "'" + userData.getEmail() + "',"
+	                + "'" + userData.getCountry() + "',"
+	                + "'" + userData.getCity() + "',"
+	                + "'" + userData.getStreet() + "',"
+	                + "'" + userData.getNumberOfBuilding() + "',"
+	                + "'" + userData.getPostCode() + "',"
+	                + "'" + userData.getDateOfBirth() + "',"
+	                + "'" + userData.getPesel() + "',"
+	                + "'',"
+	                + "'0',"
+	                + "'" + userData.getLogin() + "',"
+	                + "'" + userData.getPassword() + "'"
+	                + ");";
+	        System.out.println(SQL);
+	        stat.executeUpdate(SQL);
 	        stat.close();
 	        connection.close();
 	        // Komunikat i wydrukowanie koñcowej formy polecenia SQL
-	        System.out.println("Polecenie: \n" + dodajSQL + "\n wykonane.");
+	        System.out.println("Polecenie: \n" + SQL + "\n wykonane.");
 	    } catch (Exception e) {
 	        System.out.println("Nie mogê dodaæ danych " + e.getMessage());
 	    }
 	}
+	    
+    /*
+	 * Metoda odpowiadaj¹ca za dodanie nowej firmy do bazy danych
+	 */
+    public void addNewCompany(Company companyData) {
+    	
+    }
+	
 }
 

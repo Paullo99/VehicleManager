@@ -3,10 +3,10 @@ package Classes;
 public class Company extends Profile {
 
 	private String name;
-	private double nip;
+	private int nip;
 	
 	//Konstruktor
-	public Company(String name, double nip, double phone, String email, String country,
+	public Company(String name, int nip, String phone, String email, String country,
 			String city, String street,	int numberOfBuilding, String postCode) {
 		this.name = name;
 		this.nip = nip;
