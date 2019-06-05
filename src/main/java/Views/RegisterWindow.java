@@ -38,6 +38,8 @@ public class RegisterWindow extends JFrame {
 	private JTextField textFieldNumberOfBuilding;
 	private JTextField textFieldPostCode;
 	private JTextField textFieldNip;
+	private JTextField textFieldPesel;
+	private JTextField textFieldFirmName;
 	//main
 	public static void main() {
 		EventQueue.invokeLater(new Runnable() {
@@ -79,17 +81,17 @@ public class RegisterWindow extends JFrame {
 		contentPane.add(btnTest);
 		
 		textFieldLogin = new JTextField();
-		textFieldLogin.setBounds(450, 52, 174, 20);
+		textFieldLogin.setBounds(450, 111, 174, 20);
 		contentPane.add(textFieldLogin);
 		textFieldLogin.setColumns(10);
 		
 		JLabel lblLogin = new JLabel("Login:");
-		lblLogin.setBounds(325, 55, 46, 14);
+		lblLogin.setBounds(325, 114, 46, 14);
 		contentPane.add(lblLogin);
 		
 		textFieldPassword = new JTextField();
 		textFieldPassword.setColumns(10);
-		textFieldPassword.setBounds(450, 96, 174, 20);
+		textFieldPassword.setBounds(450, 136, 174, 20);
 		contentPane.add(textFieldPassword);
 		
 		textFieldVorname = new JTextField();
@@ -98,21 +100,21 @@ public class RegisterWindow extends JFrame {
 		contentPane.add(textFieldVorname);
 		
 		JLabel lblPassword = new JLabel("Has\u0142o:");
-		lblPassword.setBounds(325, 99, 62, 14);
+		lblPassword.setBounds(325, 139, 62, 14);
 		contentPane.add(lblPassword);
 		
-		JLabel lblImi = new JLabel("Imi\u0119");
-		lblImi.setBounds(325, 216, 62, 14);
-		contentPane.add(lblImi);
+		JLabel lblName = new JLabel("Imi\u0119:");
+		lblName.setBounds(325, 216, 62, 14);
+		contentPane.add(lblName);
 		
 		textFieldName = new JTextField();
 		textFieldName.setColumns(10);
 		textFieldName.setBounds(450, 244, 174, 20);
 		contentPane.add(textFieldName);
 		
-		JLabel lblNazwisko = new JLabel("Nazwisko:");
-		lblNazwisko.setBounds(325, 247, 62, 14);
-		contentPane.add(lblNazwisko);
+		JLabel lblSurname = new JLabel("Nazwisko:");
+		lblSurname.setBounds(325, 247, 62, 14);
+		contentPane.add(lblSurname);
 		
 		textFieldPhone = new JTextField();
 		textFieldPhone.setColumns(10);
@@ -120,7 +122,7 @@ public class RegisterWindow extends JFrame {
 		contentPane.add(textFieldPhone);
 		
 		JLabel lblNrTelefonu = new JLabel("Nr telefonu:");
-		lblNrTelefonu.setBounds(325, 278, 62, 14);
+		lblNrTelefonu.setBounds(325, 278, 77, 14);
 		contentPane.add(lblNrTelefonu);
 		
 		textFieldEmail = new JTextField();
@@ -146,7 +148,7 @@ public class RegisterWindow extends JFrame {
 		textFieldCounty.setBounds(450, 368, 174, 20);
 		contentPane.add(textFieldCounty);
 		
-		JLabel lblWojewdztwo = new JLabel("Wojew\u00F3dztwo");
+		JLabel lblWojewdztwo = new JLabel("Wojew\u00F3dztwo:");
 		lblWojewdztwo.setBounds(325, 371, 92, 14);
 		contentPane.add(lblWojewdztwo);
 		
@@ -155,7 +157,7 @@ public class RegisterWindow extends JFrame {
 		textFieldCity.setBounds(450, 399, 174, 20);
 		contentPane.add(textFieldCity);
 		
-		JLabel lblMiejscowo = new JLabel("Miejscowo\u015B\u0107");
+		JLabel lblMiejscowo = new JLabel("Miejscowo\u015B\u0107:");
 		lblMiejscowo.setBounds(325, 402, 92, 14);
 		contentPane.add(lblMiejscowo);
 		
@@ -173,7 +175,7 @@ public class RegisterWindow extends JFrame {
 		textFieldNumberOfBuilding.setBounds(450, 461, 174, 20);
 		contentPane.add(textFieldNumberOfBuilding);
 		
-		JLabel lblNrDomu = new JLabel("Nr domu");
+		JLabel lblNrDomu = new JLabel("Nr domu:");
 		lblNrDomu.setBounds(325, 464, 92, 14);
 		contentPane.add(lblNrDomu);
 		
@@ -182,28 +184,62 @@ public class RegisterWindow extends JFrame {
 		textFieldPostCode.setBounds(450, 492, 174, 20);
 		contentPane.add(textFieldPostCode);
 		
-		JLabel lblKodPocztowy = new JLabel("Kod pocztowy");
-		lblKodPocztowy.setBounds(325, 495, 92, 14);
+		JLabel lblKodPocztowy = new JLabel("Kod pocztowy:");
+		lblKodPocztowy.setBounds(325, 495, 102, 17);
 		contentPane.add(lblKodPocztowy);
+		
+		JLabel lblPesel = new JLabel("PESEL:");
+		lblPesel.setBounds(325, 526, 92, 14);
+		contentPane.add(lblPesel);
+		
+		JLabel lblNi = new JLabel("NIP:");
+		lblNi.setBounds(325, 247, 92, 14);
+		contentPane.add(lblNi);
+		lblNi.hide();
+		
+		JLabel lblFirmName = new JLabel("Nazwa:");
+		lblFirmName.setBounds(325, 216, 92, 14);
+		contentPane.add(lblFirmName);
+		lblFirmName.hide();
 		
 		JRadioButton rdbtnCompany = new JRadioButton("Firma");
 		rdbtnCompany.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				textFieldName.hide();
+				textFieldVorname.hide();
+				textFieldPesel.hide();
+				textFieldNip.show();
+				lblName.hide();
+				lblSurname.hide();
+				lblPesel.hide();
+				textFieldFirmName.show();
+				lblNi.show();
+				lblFirmName.show();
+			
 			}
 		});
-		rdbtnCompany.setBounds(325, 163, 109, 23);
+		rdbtnCompany.setBounds(531, 175, 109, 23);
 		contentPane.add(rdbtnCompany);
 		
 		JRadioButton rdbtnPhysicalUser = new JRadioButton("Osoba fizyczna");
 		rdbtnPhysicalUser.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				textFieldName.show();
+				textFieldVorname.show();
+				textFieldPesel.show();
+				textFieldNip.hide();
+				lblName.show();
+				lblSurname.show();
+				lblPesel.show();
+				textFieldFirmName.hide();
+				lblNi.hide();
+				lblFirmName.hide();
 			}
 		});
 		rdbtnPhysicalUser.setSelected(true);
-		rdbtnPhysicalUser.setBounds(506, 163, 109, 23);
+		rdbtnPhysicalUser.setBounds(382, 175, 109, 23);
 		contentPane.add(rdbtnPhysicalUser);
 		
 		ButtonGroup typeOfProfile = new ButtonGroup();
@@ -212,8 +248,20 @@ public class RegisterWindow extends JFrame {
 		
 		textFieldNip = new JTextField();
 		textFieldNip.setColumns(10);
-		textFieldNip.setBounds(450, 535, 174, 20);
+		textFieldNip.setBounds(450, 244, 174, 20);
 		contentPane.add(textFieldNip);
+		textFieldNip.hide();
+		
+		textFieldPesel = new JTextField();
+		textFieldPesel.setColumns(10);
+		textFieldPesel.setBounds(450, 523, 174, 20);
+		contentPane.add(textFieldPesel);
+		
+		textFieldFirmName = new JTextField();
+		textFieldFirmName.setColumns(10);
+		textFieldFirmName.setBounds(450, 213, 174, 20);
+		contentPane.add(textFieldFirmName);
+		textFieldFirmName.hide();
 		
 		textFieldNip.hide();
 		
