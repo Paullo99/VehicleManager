@@ -82,8 +82,9 @@ public class MainWindow extends JFrame {
 		
 		JButton btnLogOut = new JButton("Wyloguj");
 		btnLogOut.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {			
-				
+			public void actionPerformed(ActionEvent e) {	
+				dispose();
+				LoginWindow.main(null);
 			}
 		});
 		btnLogOut.setFont(new Font("Tahoma", Font.PLAIN, 20));
