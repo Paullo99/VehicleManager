@@ -6,17 +6,17 @@ public class Vehicle implements IVehicle {
 	private String vehicleType;
 	private String mark;
 	private String model;
-	private double course;
+	private String course;
 	private int yearOfProduction;
-	private double engineCapacity;
-	private double power;
+	private String engineCapacity;
+	private int power;
 	private String fuelType;
 	private int load;
 	private String imageUrl;
 	private String registrationNumber;
 	
-	public Vehicle(int vehicleId, String vehicleType, String mark,	String model,double course, 
-					int yearOfProduction, double engineCapacity, double power,
+	public Vehicle(int vehicleId, String vehicleType, String mark,	String model,String course, 
+					int yearOfProduction, String engineCapacity, int power,
 					String fuelType, int load, String imageUrl,	String registrationNumber) {
 		this.vehicleId = vehicleId;
 		this.vehicleType = vehicleType;
@@ -34,12 +34,12 @@ public class Vehicle implements IVehicle {
 	}
 
 	@Override
-	public double getCourse() {
+	public String getCourse() {
 		return course;
 	}
 
 	@Override
-	public void setCourse(double course) {
+	public void setCourse(String course) {
 		this.course = course;
 	}
 
@@ -69,12 +69,12 @@ public class Vehicle implements IVehicle {
 	}
 
 	@Override
-	public double getEngineCapacity() {
+	public String getEngineCapacity() {
 		return engineCapacity;
 	}
 
 	@Override
-	public double getPower() {
+	public int getPower() {
 		return power;
 	}
 

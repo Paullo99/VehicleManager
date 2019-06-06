@@ -10,6 +10,10 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.MouseAdapter;
@@ -17,6 +21,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
+
 
 public class MainWindow extends JFrame {
 
@@ -57,12 +62,25 @@ public class MainWindow extends JFrame {
 			}
 		});
 		btnVehicles.setFont(new Font("Tahoma", Font.PLAIN, 20));
+
+		
+		btnVehicles.setBounds(0, 0, 125, 125);
+		contentPanel.add(btnVehicles);
+
 		btnVehicles.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
+
 		
 		JButton btnAddVehicle = new JButton("<html> Dodaj <br> pojazd </html>");
+		btnAddVehicle.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				AddVehicleWindow addVehicleWindow = new AddVehicleWindow();
+				addVehicleWindow.show();
+			}
+		});
 		btnAddVehicle.setToolTipText("");
 		btnAddVehicle.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		

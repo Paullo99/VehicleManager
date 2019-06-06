@@ -81,6 +81,7 @@ public class LoginWindow extends JFrame {
 				if(check==true) {
 					MainWindow mainWindow = new MainWindow();
 					mainWindow.show();
+					LoginWindow.this.dispose();
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Poda³eœ nieprawid³owy login lub has³o");
