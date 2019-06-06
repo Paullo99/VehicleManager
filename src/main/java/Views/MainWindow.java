@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MainWindow extends JFrame {
 
@@ -46,14 +48,18 @@ public class MainWindow extends JFrame {
 		
 		JButton btnVehicles = new JButton("Pojazdy");
 		btnVehicles.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnVehicles.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+		
 		btnVehicles.setBounds(0, 0, 125, 125);
 		contentPanel.add(btnVehicles);
 		
 		JButton btnAddVehicle = new JButton("<html> Dodaj <br> pojazd </html>");
+		btnAddVehicle.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				AddVehicleWindow addVehicleWindow = new AddVehicleWindow();
+				addVehicleWindow.show();
+			}
+		});
 		btnAddVehicle.setToolTipText("");
 		btnAddVehicle.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnAddVehicle.setBounds(0, 124, 125, 125);

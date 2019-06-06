@@ -269,19 +269,26 @@ public class RegisterWindow extends JFrame {
 		btnRegister.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				char[] pesel = textFieldPesel.getText().toCharArray();
-				int year = Integer.parseInt(""+pesel[0]+pesel[1]);
-				int month = Integer.parseInt(""+pesel[2]+pesel[3])-1;
-				int day = Integer.parseInt(""+pesel[4]+pesel[5]);
-				Date dateOfBirth = new Date(year, month, day);
+				
 				if(rdbtnPhysicalUser.isSelected()) {
-					PhysicalUser userData = new PhysicalUser( textFieldVorname.getText(), textFieldName.getText(), dateOfBirth, textFieldPesel.getText(), textFieldPhone.getText(), textFieldEmail.getText(), textFieldCountry.getText(), textFieldCity.getText(), textFieldStreet.getText(), Integer.parseInt(textFieldNumberOfBuilding.getText()), textFieldPostCode.getText(), textFieldLogin.getText(), textFieldPassword.getText());
+					//pobieranie daty z PESELU
+					char[] pesel = textFieldPesel.getText().toCharArray();
+					int year = Integer.parseInt(""+pesel[0]+pesel[1]);
+					int month = Integer.parseInt(""+pesel[2]+pesel[3])-1;
+					int day = Integer.parseInt(""+pesel[4]+pesel[5]);
+					Date dateOfBirth = new Date(year, month, day);
+					
+					//tworzenie obiektu 
+					PhysicalUser userData = new PhysicalUser( textFieldVorname.getText(), textFieldName.getText(), dateOfBirth, textFieldPesel.getText(), 
+							textFieldPhone.getText(), textFieldEmail.getText(), textFieldCountry.getText(), textFieldCity.getText(), textFieldStreet.getText(), 
+							Integer.parseInt(textFieldNumberOfBuilding.getText()), textFieldPostCode.getText(), textFieldLogin.getText(), textFieldPassword.getText());
 					addNewPhysicalUser(userData);
 				}
 				else {
-					//tutaj taki sam kod dla Company - uzupe³niæ parametry
-					//Company companyData = new Company();
-					//addNewCompany(companyData);
+					Company companyData = new Company(textFieldFirmName.getText(), Double.parseDouble(textFieldNip.getText()),textFieldPhone.getText(), 
+							textFieldEmail.getText(), textFieldCountry.getText(), textFieldCity.getText(), textFieldStreet.getText(), 
+							Integer.parseInt(textFieldNumberOfBuilding.getText()), textFieldPostCode.getText(), textFieldLogin.getText(), textFieldPassword.getText() );
+					addNewCompany(companyData);
 				}
 				
 				//zamkniêcie bie¿¹cego okna i otwarcie poprzedniego
@@ -334,7 +341,36 @@ public class RegisterWindow extends JFrame {
 	 * Metoda odpowiadaj¹ca za dodanie nowej firmy do bazy danych
 	 */
     public void addNewCompany(Company companyData) {
-    	
+    	 try {
+    		 Connection connection = JavaDB.connectToDB();
+    		 Statement stat = connection.createStatement();
+    		 String SQL = "INSERT INTO User "
+                + "VALUES (NULL,"
+                + "'" + companyData.getName() + "',"
+                + "'',"
+                + "'" + companyData.getPhone() + "',"
+                + "'" + companyData.getEmail() + "',"
+                + "'" + companyData.getCountry() + "',"
+                + "'" + companyData.getCity() + "',"
+                + "'" + companyData.getStreet() + "',"
+                + "'" + companyData.getNumberOfBuilding() + "',"
+                + "'" + companyData.getPostCode() + "',"
+                + "'',"
+                + "'',"
+                + "'" + companyData.getNip() + "',"
+                + "'1',"
+                + "'" + companyData.getLogin() + "',"
+                + "'" + companyData.getPassword() + "'"
+                + ");";
+        System.out.println(SQL);
+        stat.executeUpdate(SQL);
+        stat.close();
+        connection.close();
+        // Komunikat i wydrukowanie koñcowej formy polecenia SQL
+        System.out.println("Polecenie: \n" + SQL + "\n wykonane.");
+    } catch (Exception e) {
+        System.out.println("Nie mogê dodaæ danych " + e.getMessage());
+    }
     }
 	
 }
