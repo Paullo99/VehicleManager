@@ -7,17 +7,26 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JScrollPane;
+
 
 public class MainWindow extends JFrame {
 
 	private JPanel contentPanel;
-
+	private JTable table;
 	/**
 	 * Launch the application.
 	 */
@@ -44,13 +53,25 @@ public class MainWindow extends JFrame {
 		contentPanel = new JPanel();
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPanel);
-		contentPanel.setLayout(null);
 		
 		JButton btnVehicles = new JButton("Pojazdy");
+		btnVehicles.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				//metoda ktora pokazuje tabele
+			}
+		});
 		btnVehicles.setFont(new Font("Tahoma", Font.PLAIN, 20));
+
 		
 		btnVehicles.setBounds(0, 0, 125, 125);
 		contentPanel.add(btnVehicles);
+
+		btnVehicles.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+
 		
 		JButton btnAddVehicle = new JButton("<html> Dodaj <br> pojazd </html>");
 		btnAddVehicle.addMouseListener(new MouseAdapter() {
@@ -62,13 +83,9 @@ public class MainWindow extends JFrame {
 		});
 		btnAddVehicle.setToolTipText("");
 		btnAddVehicle.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnAddVehicle.setBounds(0, 124, 125, 125);
-		contentPanel.add(btnAddVehicle);
 		
 		JButton btnStatistics = new JButton("Statystyki");
 		btnStatistics.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnStatistics.setBounds(0, 248, 125, 125);
-		contentPanel.add(btnStatistics);
 		
 		JButton btnHelp = new JButton("<html> Pomoc <br> (info)  </html>");
 		btnHelp.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -83,8 +100,6 @@ public class MainWindow extends JFrame {
 							+ " </html>");
 			}
 		});
-		btnHelp.setBounds(0, 373, 125, 125);
-		contentPanel.add(btnHelp);
 		
 		JButton btnLogOut = new JButton("Wyloguj");
 		btnLogOut.addActionListener(new ActionListener() {
@@ -94,7 +109,60 @@ public class MainWindow extends JFrame {
 			}
 		});
 		btnLogOut.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnLogOut.setBounds(0, 498, 125, 125);
-		contentPanel.add(btnLogOut);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
+		gl_contentPanel.setHorizontalGroup(
+			gl_contentPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPanel.createSequentialGroup()
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnVehicles, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnAddVehicle, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnStatistics, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE))
+							.addGap(42)
+							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 549, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnHelp, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnLogOut, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE))
+					.addGap(420))
+		);
+		gl_contentPanel.setVerticalGroup(
+			gl_contentPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPanel.createSequentialGroup()
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnVehicles, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addGap(124)
+							.addComponent(btnAddVehicle, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addGap(248)
+							.addComponent(btnStatistics, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)))
+					.addComponent(btnHelp, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnLogOut, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_contentPanel.createSequentialGroup()
+					.addGap(32)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 260, GroupLayout.PREFERRED_SIZE))
+		);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Typ pojazdu", "Marka pojazdu", "Model", "Numer rejestracyjny"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				String.class, String.class, String.class, String.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
+		table.getColumnModel().getColumn(1).setPreferredWidth(86);
+		table.getColumnModel().getColumn(3).setPreferredWidth(112);
+		scrollPane.setViewportView(table);
+		contentPanel.setLayout(gl_contentPanel);
 	}
 }
