@@ -3,17 +3,17 @@ import java.sql.Date;
 
 public class Refuelling extends EventProperties {
 
-	private double amountOfFuel;
+	private String amountOfFuel;
 	
-	public Refuelling(double course, double price, double amountOfFuel, Date dateOfEvent) {
+	public Refuelling(String course, String price, String amountOfFuel, java.util.Date date) {
 			this.course = course;
 			this.price = price;
 			this.amountOfFuel = amountOfFuel;
-			this.dateOfEvent = dateOfEvent;
+			this.dateOfEvent = date;
 	}
 	
 
-	public double getAmountOfFuel() {
+	public String getAmountOfFuel() {
 		return amountOfFuel;
 	};
 	
