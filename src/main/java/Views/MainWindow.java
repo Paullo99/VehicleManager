@@ -62,7 +62,7 @@ public class MainWindow extends JFrame {
 			}
 		});
 		
-		JButton btnAddVehicle = new JButton("<html> Dodaj <br> pojazd </html>");
+		JButton btnAddVehicle = new JButton("<html> dodaj <br> tankowanie </html>");
 		btnAddVehicle.setToolTipText("");
 		btnAddVehicle.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
@@ -107,7 +107,7 @@ public class MainWindow extends JFrame {
 							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 549, GroupLayout.PREFERRED_SIZE))
 						.addComponent(btnHelp, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnLogOut, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE))
-					.addGap(420))
+					.addGap(552))
 		);
 		gl_contentPanel.setVerticalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
