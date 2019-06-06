@@ -100,14 +100,15 @@ public class MainWindow extends JFrame {
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPanel.createSequentialGroup()
 							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnVehicles, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnAddVehicle, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnStatistics, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+									.addComponent(btnVehicles, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+									.addComponent(btnAddVehicle, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+									.addComponent(btnStatistics, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE))
+								.addComponent(btnHelp, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE))
 							.addGap(42)
-							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 549, GroupLayout.PREFERRED_SIZE))
-						.addComponent(btnHelp, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 777, GroupLayout.PREFERRED_SIZE))
 						.addComponent(btnLogOut, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE))
-					.addGap(420))
+					.addGap(192))
 		);
 		gl_contentPanel.setVerticalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
@@ -124,19 +125,20 @@ public class MainWindow extends JFrame {
 					.addComponent(btnLogOut, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE))
 				.addGroup(gl_contentPanel.createSequentialGroup()
 					.addGap(32)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 260, GroupLayout.PREFERRED_SIZE))
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 		);
 		
+		//Tabela na wyniki
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
-				"Typ pojazdu", "Marka pojazdu", "Model", "Numer rejestracyjny"
+				"Typ pojazdu", "Marka pojazdu", "Model", "Numer rejestracyjny", "W\u0142a\u015Bciwo\u015Bci"
 			}
 		) {
 			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class, String.class
+				String.class, String.class, String.class, String.class, Object.class
 			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
@@ -146,5 +148,9 @@ public class MainWindow extends JFrame {
 		table.getColumnModel().getColumn(3).setPreferredWidth(112);
 		scrollPane.setViewportView(table);
 		contentPanel.setLayout(gl_contentPanel);
+	}
+	
+	public void addRowToTable() {
+		table.
 	}
 }
