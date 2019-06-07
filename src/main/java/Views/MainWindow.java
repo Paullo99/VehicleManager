@@ -2,10 +2,16 @@ package Views;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -17,6 +23,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+
+import org.apache.commons.math3.filter.MeasurementModel;
+
+import com.google.common.collect.Table;
+
+import DB.JavaDB;
 
 
 public class MainWindow extends JFrame {
@@ -42,7 +54,7 @@ public class MainWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MainWindow() {
+	public MainWindow() {		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1162, 660);
 		setLocationRelativeTo(null);
@@ -157,14 +169,51 @@ public class MainWindow extends JFrame {
 				return columnTypes[columnIndex];
 			}
 		});
+		
 		table.getColumnModel().getColumn(1).setPreferredWidth(86);
 		table.getColumnModel().getColumn(3).setPreferredWidth(112);
 		scrollPane.setViewportView(table);
 		contentPanel.setLayout(gl_contentPanel);
+		
+		//Wywo³anie funkcji pobieraj¹cej dane z bazy danych do tabeli
+		addRowToTable();
 	}
 	
+	
 	public void addRowToTable() {
-		//
-		//table.
+		
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		try {
+   
+            Connection connection = JavaDB.connectToDB();
+            Statement stat = connection.createStatement();
+            // Polecenie wyszukania
+            String searchSQL = "SELECT Id, vehicleType, mark, model, registrationNumber FROM Vehicle;";
+
+            ResultSet result = stat.executeQuery(searchSQL);
+            System.out.println("wynik polecenia:\n" + searchSQL);
+
+            ArrayList<JButton> jButtonArrayList = new ArrayList<JButton>();
+            JButton btnProperties = new JButton("W³aœciowoœci");
+        	btnProperties.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        	btnProperties.setBounds(0, 0, 125, 125);
+        	jButtonArrayList.add(btnProperties);	
+            while (result.next()) {
+                int id = result.getInt("id");
+            	
+                model.addRow(new Object[] {result.getString("vehicleType"), result.getString("mark"), result.getString("model"),
+                		result.getString("registrationNumber"), btnProperties
+                
+                	
+                });
+             }
+            result.close();
+            stat.close();
+            connection.close();
+        } catch (Exception e) {
+            System.out.println("Nie mogê wyszukaæ danych " + e.getMessage());
+        }
+		
+		
 	}
 }
