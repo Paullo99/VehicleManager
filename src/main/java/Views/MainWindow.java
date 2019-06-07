@@ -169,6 +169,7 @@ public class MainWindow extends JFrame {
 	}
 	
 	public void addRowToTable() {
-		table.
+		//
+		//table.
 	}
 }
