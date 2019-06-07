@@ -8,7 +8,7 @@ public class Service extends EventProperties {
 	private String type;
 	
 	public Service(String name, String description, String type,
-			double course, double price, Date dateOfEvent, int vehicleId) {
+			String course, String price, Date dateOfEvent, int vehicleId) {
 			this.name = name;
 			this.description = description;
 			this.type = type;

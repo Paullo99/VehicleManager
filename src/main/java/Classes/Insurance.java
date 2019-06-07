@@ -9,7 +9,7 @@ public class Insurance extends EventsWithExpirationDate {
 	private String description;
 	
 	public Insurance(String type, double policyNumber, Date expirationDate, String description,
-			double course, double price, Date dateOfEvent, int vehicleId) {
+			String course, String price, Date dateOfEvent, int vehicleId) {
 			this.type = type;
 			this.policyNumber = policyNumber;
 			this.expirationDate = expirationDate;

@@ -3,19 +3,19 @@ import java.sql.Date;
 
 public abstract class EventProperties {
 
-	protected double course;
-	protected double price;
-	protected Date dateOfEvent;
+	protected String course;
+	protected String price;
+	protected java.util.Date dateOfEvent;
 	protected int vehicleId;
 	
 	
-	public double getCourse() {
+	public String getCourse() {
 		return course;
 	}
-	public double getPrice() {
+	public String getPrice() {
 		return price;
 	}
-	public Date getDateOfEvent() {
+	public java.util.Date getDateOfEvent() {
 		return dateOfEvent;
 	}
 	public int getVehicleId() {
