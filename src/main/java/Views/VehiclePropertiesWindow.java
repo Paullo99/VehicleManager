@@ -2,16 +2,25 @@ package Views;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import DB.JavaDB;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class VehiclePropertiesWindow extends JFrame {
@@ -36,7 +45,7 @@ public class VehiclePropertiesWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VehiclePropertiesWindow frame = new VehiclePropertiesWindow();
+					VehiclePropertiesWindow frame = new VehiclePropertiesWindow(1);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,9 +55,10 @@ public class VehiclePropertiesWindow extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Create the frame, argument is id
 	 */
-	public VehiclePropertiesWindow() {
+	public VehiclePropertiesWindow(int vehicleId) {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 720, 506);
 		contentPane = new JPanel();
@@ -201,5 +211,33 @@ public class VehiclePropertiesWindow extends JFrame {
 		txtrNotices.setText("Uwagi:");
 		txtrNotices.setBounds(480, 61, 186, 242);
 		contentPane.add(txtrNotices);
+		//wywo³anie metody dodaj¹cej wartoœci
+		AddVehicleDataToWindow(vehicleId);
+	}
+	
+	/*
+	 * Funkcja dodaj¹ca dane samochodu do textboxów w oknie
+	 */
+	public void AddVehicleDataToWindow(int vehicleId){
+		try {
+            Connection connection = JavaDB.connectToDB();
+            Statement stat = connection.createStatement();
+            // Polecenie wyszukania
+            String searchSQL = "SELECT * FROM Vehicle Where Id ='"+vehicleId+"';";
+
+            ResultSet result = stat.executeQuery(searchSQL);
+            System.out.println("wynik polecenia:\n" + searchSQL);
+            
+            //dodaanie wartoœci do textBoxów
+            while (result.next()) {
+            	textFieldVehicleMark.setText(result.getString("mark"));
+            	textFieldEngineCapacity.setText(result.getString("engineCapacity"));
+             }
+            result.close();
+            stat.close();
+            connection.close();
+        } catch (Exception e) {
+            System.out.println("Nie mogê wyszukaæ danych " + e.getMessage());
+        }
 	}
 }

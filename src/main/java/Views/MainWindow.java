@@ -2,16 +2,10 @@ package Views;
 
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -22,13 +16,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
-
-import org.apache.commons.math3.filter.MeasurementModel;
-
-import com.google.common.collect.Table;
-
-import DB.JavaDB;
 
 
 public class MainWindow extends JFrame {
@@ -117,6 +104,9 @@ public class MainWindow extends JFrame {
 		});
 		btnLogOut.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
+		/*
+		 * Panel wyœwietlaj¹cy zawartoœæ g³ównego okna programyu
+		 */
 		JScrollPane scrollPane = new JScrollPane();
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
 		gl_contentPanel.setHorizontalGroup(
@@ -152,68 +142,11 @@ public class MainWindow extends JFrame {
 					.addGap(32)
 					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 		);
-		
-		//Tabela na wyniki
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Typ pojazdu", "Marka pojazdu", "Model", "Numer rejestracyjny", "W\u0142a\u015Bciwo\u015Bci"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class, String.class, Object.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-		});
-		
-		table.getColumnModel().getColumn(1).setPreferredWidth(86);
-		table.getColumnModel().getColumn(3).setPreferredWidth(112);
-		scrollPane.setViewportView(table);
 		contentPanel.setLayout(gl_contentPanel);
 		
-		//Wywo³anie funkcji pobieraj¹cej dane z bazy danych do tabeli
-		addRowToTable();
+		//Wywo³anie obiektu tworz¹cego tabelê
+		ButtonInJTable VehicleMainTable = new ButtonInJTable(contentPanel, scrollPane);
 	}
 	
 	
-	public void addRowToTable() {
-		
-		DefaultTableModel model = (DefaultTableModel) table.getModel();
-		try {
-   
-            Connection connection = JavaDB.connectToDB();
-            Statement stat = connection.createStatement();
-            // Polecenie wyszukania
-            String searchSQL = "SELECT Id, vehicleType, mark, model, registrationNumber FROM Vehicle;";
-
-            ResultSet result = stat.executeQuery(searchSQL);
-            System.out.println("wynik polecenia:\n" + searchSQL);
-
-            ArrayList<JButton> jButtonArrayList = new ArrayList<JButton>();
-            JButton btnProperties = new JButton("W³aœciowoœci");
-        	btnProperties.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        	btnProperties.setBounds(0, 0, 125, 125);
-        	jButtonArrayList.add(btnProperties);	
-            while (result.next()) {
-                int id = result.getInt("id");
-            	
-                model.addRow(new Object[] {result.getString("vehicleType"), result.getString("mark"), result.getString("model"),
-                		result.getString("registrationNumber"), btnProperties
-                
-                	
-                });
-             }
-            result.close();
-            stat.close();
-            connection.close();
-        } catch (Exception e) {
-            System.out.println("Nie mogê wyszukaæ danych " + e.getMessage());
-        }
-		
-		
-	}
 }
