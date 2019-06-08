@@ -184,7 +184,7 @@ public class VehiclePropertiesWindow extends JFrame {
 		btnAddNotice.setBounds(34, 360, 103, 35);
 		contentPane.add(btnAddNotice);
 		
-		JButton btnAddFueling = new JButton("<html> Dodaj <br>tankowanie </html>");
+		JButton btnAddFueling = new JButton("<html> <center> Dodaj <br> tankowanie </html>");
 		btnAddFueling.setBounds(147, 360, 103, 35);
 		contentPane.add(btnAddFueling);
 		

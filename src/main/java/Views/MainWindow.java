@@ -66,7 +66,9 @@ public class MainWindow extends JFrame {
 		btnVehicles.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				//metoda ktora pokazuje tabele
+				/*
+				 * Metoda ktora pokazuje tabelê pojazdów
+				 */
 			}
 		});
 		btnVehicles.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -79,7 +81,9 @@ public class MainWindow extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-
+		/*
+		 * Przycisk otwieraj¹cy okno dodawania pojazdu
+		 */
 		JButton btnAddVehicle = new JButton("<html> Dodaj <br> pojazd </html>");
 		btnAddVehicle.addMouseListener(new MouseAdapter() {
 			@Override
@@ -153,7 +157,9 @@ public class MainWindow extends JFrame {
 					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 		);
 		
-		//Tabela na wyniki
+		/*
+		 * Utworzenie tabeli na pojazdy znajduj¹ce siê w bazie danych
+		 */
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -175,7 +181,9 @@ public class MainWindow extends JFrame {
 		scrollPane.setViewportView(table);
 		contentPanel.setLayout(gl_contentPanel);
 		
-		//Wywo³anie funkcji pobieraj¹cej dane z bazy danych do tabeli
+		/*
+		 * Wywo³anie funkcji pobieraj¹cej dane z bazy danych do tabeli
+		 */
 		addRowToTable();
 	}
 	
