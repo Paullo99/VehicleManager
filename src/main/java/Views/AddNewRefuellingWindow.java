@@ -82,7 +82,7 @@ public class AddNewRefuellingWindow extends JFrame {
 		contentPane.add(textFieldAmountOfFuel);
 		textFieldAmountOfFuel.setColumns(10);
 		
-		JLabel lblIloPaliwaW = new JLabel("Ilo\u015B\u0107 paliwa w L:");
+		JLabel lblIloPaliwaW = new JLabel("Ilo\u015B\u0107 paliwa:");
 		lblIloPaliwaW.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblIloPaliwaW.setBounds(10, 104, 94, 14);
 		contentPane.add(lblIloPaliwaW);
@@ -98,6 +98,9 @@ public class AddNewRefuellingWindow extends JFrame {
 		
 		JButton btnNewButton = new JButton("Zatwierdz");
 		btnNewButton.addMouseListener(new MouseAdapter() {
+			/*
+			 * Tworzenie nowego obiektu klasy Refuelling
+			 */
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				Refuelling refuellingData = new Refuelling(textFieldCours.getText(), textFieldPriceOfFuel.getText(), textFieldAmountOfFuel.getText(), CalendarOfRefuelling.getDate(), Integer.parseInt(textFieldVehicleId.getText()));
@@ -124,7 +127,9 @@ public class AddNewRefuellingWindow extends JFrame {
 			        stat.executeUpdate(SQL);
 			        stat.close();
 			        connection.close();
-			        // Komunikat i wydrukowanie koñcowej formy polecenia SQL
+			        /*
+			         *  Komunikat i wydrukowanie koñcowej formy polecenia SQL
+			         */
 			        System.out.println("Polecenie: \n" + SQL + "\n wykonane.");
 			    } catch (Exception e) {
 			        System.out.println("Nie mogê dodaæ danych " + e.getMessage());
@@ -141,6 +146,18 @@ public class AddNewRefuellingWindow extends JFrame {
 		textFieldVehicleId.setBounds(342, 39, 86, 20);
 		contentPane.add(textFieldVehicleId);
 		textFieldVehicleId.setColumns(10);
+		
+		JLabel lblL = new JLabel("[ L ]");
+		lblL.setBounds(229, 104, 46, 14);
+		contentPane.add(lblL);
+		
+		JLabel lblzl = new JLabel("[ z\u0142/L ]");
+		lblzl.setBounds(229, 73, 46, 14);
+		contentPane.add(lblzl);
+		
+		JLabel lblkm = new JLabel("[ km ]");
+		lblkm.setBounds(229, 42, 46, 14);
+		contentPane.add(lblkm);
 		
 		
 	}

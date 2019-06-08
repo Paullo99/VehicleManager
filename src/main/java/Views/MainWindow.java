@@ -48,12 +48,16 @@ public class MainWindow extends JFrame {
 		contentPanel = new JPanel();
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPanel);
-		
+		/*
+		 * Przycisk odpowiadaj¹cy za otwarcie tabeli pojazdów
+		 */
 		JButton btnVehicles = new JButton("Pojazdy");
 		btnVehicles.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				//metoda ktora pokazuje tabele
+				/*
+				 * Metoda ktora pokazuje tabelê pojazdów
+				 */
 			}
 		});
 		btnVehicles.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -66,7 +70,9 @@ public class MainWindow extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-
+		/*
+		 * Przycisk otwieraj¹cy okno dodawania pojazdu
+		 */
 		JButton btnAddVehicle = new JButton("<html> Dodaj <br> pojazd </html>");
 		btnAddVehicle.addMouseListener(new MouseAdapter() {
 			@Override
@@ -77,7 +83,9 @@ public class MainWindow extends JFrame {
 		});
 		btnAddVehicle.setToolTipText("");
 		btnAddVehicle.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		
+		/*
+		 * przycisk otwieraj¹cy okno statystyk
+		 */
 		JButton btnStatistics = new JButton("Statystyki");
 		btnStatistics.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
@@ -94,7 +102,9 @@ public class MainWindow extends JFrame {
 							+ " </html>");
 			}
 		});
-		
+		/*
+		 * Przycisk wylogowania
+		 */
 		JButton btnLogOut = new JButton("Wyloguj");
 		btnLogOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {	
