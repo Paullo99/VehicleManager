@@ -193,7 +193,7 @@ public class VehiclePropertiesWindow extends JFrame {
 		});
 		btnAddNotice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AddNewNoticeWindow noticeWindow = new AddNewNoticeWindow();
+				AddNoticeWindow noticeWindow = new AddNoticeWindow();
 				noticeWindow.show();
 			}
 		});
@@ -241,10 +241,18 @@ public class VehiclePropertiesWindow extends JFrame {
             ResultSet result = stat.executeQuery(searchSQL);
             System.out.println("wynik polecenia:\n" + searchSQL);
             
-            //dodaanie wartoœci do textBoxów
+            //dodawanie wartoœci do textBoxów
             while (result.next()) {
+            	textFieldVehicleType.setText(result.getString("vehicleType"));
             	textFieldVehicleMark.setText(result.getString("mark"));
+            	textFieldVehicleModel.setText(result.getString("model"));
+            	textFieldYearOfProduction.setText(result.getString("yearOfProduction"));
+            	textFieldVehicleCourse.setText(result.getString("course"));
             	textFieldEngineCapacity.setText(result.getString("engineCapacity"));
+            	textFieldPower.setText(result.getString("power"));
+            	textFieldFuelType.setText(result.getString("fuellType"));
+            	textFieldLoad.setText(result.getString("load"));
+            	textFieldRegistrationNumber.setText(result.getString("registrationNumber"));
              }
             result.close();
             stat.close();
