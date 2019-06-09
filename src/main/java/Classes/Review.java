@@ -1,5 +1,5 @@
 package Classes;
-import java.sql.Date;
+import java.util.Date;
 
 public class Review extends EventsWithExpirationDate {
 	
@@ -7,14 +7,14 @@ public class Review extends EventsWithExpirationDate {
 	private Date expirationDate;
 	private String notices;
 
-	public Review(boolean isPassed, Date expirationDate, String notices,
-			String course, String price, Date dateOfEvent, int vehicleId) {
+	public Review(boolean isPassed, Date date, String notices,
+			String course, String price, Date date2, int vehicleId) {
 			this.isPassed = isPassed;
-			this.expirationDate = expirationDate;
+			this.expirationDate = date;
 			this.notices = notices;
 			this.course = course;
 			this.price = price;
-			this.dateOfEvent = dateOfEvent;
+			this.dateOfEvent = date2;
 			this.vehicleId = vehicleId;
 	}
 

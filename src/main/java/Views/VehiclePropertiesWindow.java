@@ -22,6 +22,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class VehiclePropertiesWindow extends JFrame {
 
@@ -59,7 +61,7 @@ public class VehiclePropertiesWindow extends JFrame {
 	 */
 	public VehiclePropertiesWindow(int vehicleId) {
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 720, 506);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -172,7 +174,7 @@ public class VehiclePropertiesWindow extends JFrame {
 		textFieldLoad.setColumns(10);
 		
 		JLabel lblNewLabel_8 = new JLabel("Tu b\u0119dzie zdj\u0119cie:");
-		lblNewLabel_8.setBounds(294, 35, 92, 14);
+		lblNewLabel_8.setBounds(260, 35, 126, 14);
 		contentPane.add(lblNewLabel_8);
 		
 		JLabel lblNumerRejestracyjny = new JLabel("Numer rejestracyjny:");
@@ -187,14 +189,25 @@ public class VehiclePropertiesWindow extends JFrame {
 		textFieldRegistrationNumber.setColumns(10);
 		
 		JButton btnAddNotice = new JButton("Dodaj uwag\u0119");
+		btnAddNotice.addMouseListener(new MouseAdapter() {
+		});
 		btnAddNotice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				AddNoticeWindow noticeWindow = new AddNoticeWindow();
+				noticeWindow.show();
 			}
 		});
 		btnAddNotice.setBounds(34, 360, 103, 35);
 		contentPane.add(btnAddNotice);
 		
 		JButton btnAddFueling = new JButton("<html> <center> Dodaj <br> tankowanie </html>");
+		btnAddFueling.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				AddNewRefuellingWindow refuellingWindow = new AddNewRefuellingWindow(null);
+				refuellingWindow.show();
+			}
+		});
 		btnAddFueling.setBounds(147, 360, 103, 35);
 		contentPane.add(btnAddFueling);
 		
@@ -228,10 +241,18 @@ public class VehiclePropertiesWindow extends JFrame {
             ResultSet result = stat.executeQuery(searchSQL);
             System.out.println("wynik polecenia:\n" + searchSQL);
             
-            //dodaanie wartoœci do textBoxów
+            //dodawanie wartoœci do textBoxów
             while (result.next()) {
+            	textFieldVehicleType.setText(result.getString("vehicleType"));
             	textFieldVehicleMark.setText(result.getString("mark"));
+            	textFieldVehicleModel.setText(result.getString("model"));
+            	textFieldYearOfProduction.setText(result.getString("yearOfProduction"));
+            	textFieldVehicleCourse.setText(result.getString("course"));
             	textFieldEngineCapacity.setText(result.getString("engineCapacity"));
+            	textFieldPower.setText(result.getString("power"));
+            	textFieldFuelType.setText(result.getString("fuellType"));
+            	textFieldLoad.setText(result.getString("load"));
+            	textFieldRegistrationNumber.setText(result.getString("registrationNumber"));
              }
             result.close();
             stat.close();
