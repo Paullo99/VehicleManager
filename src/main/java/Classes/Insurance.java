@@ -1,22 +1,22 @@
 package Classes;
-import java.sql.Date;
+import java.util.Date;
 
 public class Insurance extends EventsWithExpirationDate {
 
 	private String type;
-	private double policyNumber;
+	private String policyNumber;
 	private Date expirationDate;
 	private String description;
 	
-	public Insurance(String type, double policyNumber, Date expirationDate, String description,
-			String course, String price, Date dateOfEvent, int vehicleId) {
+	public Insurance(String type, String policyNumber, Date date, String description,
+			String course, String price, Date date2, int vehicleId) {
 			this.type = type;
 			this.policyNumber = policyNumber;
-			this.expirationDate = expirationDate;
+			this.expirationDate = date;
 			this.description = description;
 			this.course = course;
 			this.price = price;
-			this.dateOfEvent = dateOfEvent;
+			this.dateOfEvent = date2;
 			this.vehicleId = vehicleId;
 	}
 
@@ -24,7 +24,7 @@ public class Insurance extends EventsWithExpirationDate {
 		return type;
 	}
 
-	public double getPolicyNumber() {
+	public String getPolicyNumber() {
 		return policyNumber;
 	}
 	

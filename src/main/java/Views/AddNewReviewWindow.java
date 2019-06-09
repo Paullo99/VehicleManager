@@ -8,11 +8,21 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JRadioButton;
 import com.toedter.calendar.JCalendar;
+
+import Classes.Insurance;
+import Classes.Review;
+import DB.JavaDB;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.Statement;
 
 public class AddNewReviewWindow extends JFrame {
 
@@ -42,7 +52,7 @@ public class AddNewReviewWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public AddNewReviewWindow() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 695, 433);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -58,12 +68,13 @@ public class AddNewReviewWindow extends JFrame {
 		lblWanyDo.setBounds(283, 30, 152, 14);
 		contentPane.add(lblWanyDo);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("New radio button");
-		rdbtnNewRadioButton.setBounds(122, 55, 109, 23);
-		contentPane.add(rdbtnNewRadioButton);
+		JRadioButton rdbtnPassed = new JRadioButton("Przeszed\u0142");
+		rdbtnPassed.setSelected(true);
+		rdbtnPassed.setBounds(129, 26, 109, 23);
+		contentPane.add(rdbtnPassed);
 		
 		JLabel lblWynik = new JLabel("Wynik:");
-		lblWynik.setBounds(31, 55, 46, 14);
+		lblWynik.setBounds(31, 34, 46, 14);
 		contentPane.add(lblWynik);
 		
 		textFieldNoticesToReview = new JTextField();
@@ -111,9 +122,61 @@ public class AddNewReviewWindow extends JFrame {
 		calendarExpirationDateOfReview.setBounds(462, 55, 152, 153);
 		contentPane.add(calendarExpirationDateOfReview);
 		
+		JRadioButton radioButtonNotPassed = new JRadioButton("Nie przeszed\u0142");
+		radioButtonNotPassed.setBounds(129, 55, 109, 18);
+		contentPane.add(radioButtonNotPassed);
+		
+		ButtonGroup btnGroup = new ButtonGroup();
+		btnGroup.add(rdbtnPassed);
+		btnGroup.add(radioButtonNotPassed);
+		
 		JButton btnConfirmNewReview = new JButton("Zatwierdz");
 		btnConfirmNewReview.setFont(new Font("Tahoma", Font.BOLD, 20));
 		btnConfirmNewReview.setBounds(283, 263, 143, 67);
 		contentPane.add(btnConfirmNewReview);
+		
+		btnConfirmNewReview.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				/*
+				 * Tworzenie nowego obiektu Przegl¹d
+				 * */
+				Review reviewData = new Review(rdbtnPassed.isSelected(), calendarExpirationDateOfReview.getDate(), 
+						textFieldNoticesToReview.getText(), textFieldCourseDuringReview.getText(), textFieldPriceOfReview.getText(), 
+						calendarDateOfReview.getDate(), Integer.parseInt(textFieldVehicleId.getText()));
+				
+						AddNewReview(reviewData);
+			}
+				private void AddNewReview(Review reviewData) {
+					try {
+						Connection connection = JavaDB.connectToDB();
+				        Statement stat = connection.createStatement();
+				        String SQL = "INSERT INTO Review "
+				                + "VALUES (NULL,"
+				                + "'" + reviewData.isPassed() + "',"
+				                + "'" + reviewData.getExpirationDate() + "',"
+				                + "'" + reviewData.getNotices() + "',"
+				                + "'" + reviewData.getCourse() + "',"
+				                + "'" + reviewData.getPrice() + "',"
+				                + "'" + reviewData.getDateOfEvent() + "',"
+				                + "'" + reviewData.getVehicleId() + "'"
+				                + ");";
+				        System.out.println(SQL);
+				        stat.executeUpdate(SQL);
+				        stat.close();
+				        connection.close();
+				        /*
+				         *  Komunikat i wydrukowanie koñcowej formy polecenia SQL
+				         */
+				        System.out.println("Polecenie: \n" + SQL + "\n wykonane.");
+				    } catch (Exception e) {
+				        System.out.println("Nie mogê dodaæ danych " + e.getMessage());
+				    }
+					dispose();
+				}
+			});
+			
+	
 	}
 }

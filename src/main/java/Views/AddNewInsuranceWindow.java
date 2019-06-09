@@ -1,20 +1,31 @@
 package Views;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import com.toedter.calendar.JCalendar;
-import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.Statement;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import com.toedter.calendar.JCalendar;
+
+import Classes.Insurance;
+import DB.JavaDB;
 
 public class AddNewInsuranceWindow extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textFieldTypeOfInsurance;
 	private JTextField textFieldPolicyNumber;
@@ -43,7 +54,7 @@ public class AddNewInsuranceWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public AddNewInsuranceWindow() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 680, 456);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -128,9 +139,57 @@ public class AddNewInsuranceWindow extends JFrame {
 		lblDataWyganicia.setBounds(431, 30, 152, 14);
 		contentPane.add(lblDataWyganicia);
 		
+		
 		JButton btnConfirmNewInsurance = new JButton("Zatwierdz");
+		
 		btnConfirmNewInsurance.setFont(new Font("Tahoma", Font.BOLD, 20));
 		btnConfirmNewInsurance.setBounds(245, 280, 152, 77);
 		contentPane.add(btnConfirmNewInsurance);
+		
+		btnConfirmNewInsurance.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				/*
+				 * Tworzenie nowego obiektu Ubezpieczenie
+				 */
+				Insurance insuranceData = new Insurance(textFieldTypeOfInsurance.getText(),textFieldPolicyNumber.getText(),
+						calendarExpirationDateOfInsurance.getDate(), textFieldDescriptionOfInsurance.getText(),
+						textFieldCourseDuringInsurance.getText(), textFieldPriceOfInsurance.getText(),
+						calendarStartOfInsurance.getDate(), Integer.parseInt(textFieldVehicleId.getText()));
+			
+				AddNewInsurance(insuranceData);
+			}
+				private void AddNewInsurance(Insurance insuranceData) {
+					try {
+						Connection connection = JavaDB.connectToDB();
+				        Statement stat = connection.createStatement();
+				        String SQL = "INSERT INTO Insurance "
+				                + "VALUES (NULL,"
+				                + "'" + insuranceData.getType() + "',"
+				                + "'" + insuranceData.getPolicyNumber() + "',"
+				                + "'" + insuranceData.getExpirationDate() + "',"
+				                + "'" + insuranceData.getDescription() + "',"
+				                + "'" + insuranceData.getCourse() + "',"
+				                + "'" + insuranceData.getPrice() + "',"
+				                + "'" + insuranceData.getDateOfEvent() + "',"
+				                + "'" + insuranceData.getVehicleId() + "'"
+				                + ");";
+				        System.out.println(SQL);
+				        stat.executeUpdate(SQL);
+				        stat.close();
+				        connection.close();
+				        /*
+				         *  Komunikat i wydrukowanie koñcowej formy polecenia SQL
+				         */
+				        System.out.println("Polecenie: \n" + SQL + "\n wykonane.");
+				    } catch (Exception e) {
+				        System.out.println("Nie mogê dodaæ danych " + e.getMessage());
+				    }
+					dispose();
+				}
+			});
+		
+		
 	}
 }

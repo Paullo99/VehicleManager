@@ -1,30 +1,26 @@
 package Views;
 
-import java.awt.Dimension;
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import javax.swing.AbstractAction;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import DB.JavaDB;
-import Views.ButtonInJTable.ButtonEditor;
-import Views.ButtonInJTable.ButtonRenderer;
 
-public class InsuranceHistoryWindow extends JFrame {
+public class ReviewHistoryWindow extends JFrame {
 
-	private String[] columnNames = new String[8];
+	private JPanel contentPane;
+
+	private String[] columnNames = new String[7];
 	private JTable table;
 	
 	/**
@@ -34,7 +30,7 @@ public class InsuranceHistoryWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					InsuranceHistoryWindow frame = new InsuranceHistoryWindow();
+					ReviewHistoryWindow frame = new ReviewHistoryWindow();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,7 +42,7 @@ public class InsuranceHistoryWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public InsuranceHistoryWindow() {
+	public ReviewHistoryWindow() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1296, 611);
 		getContentPane().setLayout(null);
@@ -58,8 +54,8 @@ public class InsuranceHistoryWindow extends JFrame {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
-		columnNames = new String[] { "Id","Typ ubezpieczenia", "Numer polisy", " Data wa¿noœci polisy", ""
-				+ "Przebieg", "Cena", "Data", "Opis" };
+		columnNames = new String[] { "Id","Czy przeszed³?", "Data wa¿noœci", ""
+				+ "Przebieg", "Cena", "Data", "Uwagi" };
 		TableModel model = new DefaultTableModel(null, columnNames);
 		table.setModel(model);
 		scrollPane.setViewportView(table);
@@ -70,7 +66,7 @@ public class InsuranceHistoryWindow extends JFrame {
 
 	
 	/*
-	 * Metoda odpowiadaj¹ca za pobieranie danych o ubezpieczeniu z bazy danych i dodawanie ich w formie wierszy tabeli
+	 * Metoda odpowiadaj¹ca za pobieranie danych o przegl¹dach z bazy danych i dodawanie ich w formie wierszy tabeli
 	 */
 public void addRowToTable() {
 	
@@ -79,13 +75,13 @@ public void addRowToTable() {
         Connection connection = JavaDB.connectToDB();
         Statement stat = connection.createStatement();
         // Polecenie wyszukania
-        String searchSQL = "SELECT vehicleId, type, policyNumber, expirationDate, course, price, dateOfEvent, description FROM Insurance;";
+        String searchSQL = "SELECT vehicleId, isPassed, notices, expirationDate, course, price, dateOfEvent FROM Review;";
         ResultSet result = stat.executeQuery(searchSQL);
         System.out.println("wynik polecenia:\n" + searchSQL);
 
         while (result.next()) {
-            model.addRow(new Object[] {result.getInt("vehicleId"), result.getString("type"), result.getString("policyNumber"), result.getString("expirationDate"),
-            		result.getString("course"), result.getString("price"),result.getString("dateOfEvent"), result.getString("description"),""
+            model.addRow(new Object[] {result.getInt("vehicleId"), result.getString("isPassed"), result.getString("expirationDate"),
+            		result.getString("course"), result.getString("price"),result.getString("dateOfEvent"), result.getString("notices"),""
             });
          }
         result.close();
@@ -95,4 +91,5 @@ public void addRowToTable() {
         System.out.println("Nie mogê wyszukaæ danych " + e.getMessage());
     }
 }
+
 }
