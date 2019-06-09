@@ -6,16 +6,15 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
+import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class AddNoticeWindow extends JFrame {
+public class AddNewNoticeWindow extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textFieldAddNotice;
 
 	/**
 	 * Launch the application.
@@ -24,7 +23,7 @@ public class AddNoticeWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddNoticeWindow frame = new AddNoticeWindow();
+					AddNewNoticeWindow frame = new AddNewNoticeWindow();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,7 +35,7 @@ public class AddNoticeWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddNoticeWindow() {
+	public AddNewNoticeWindow() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -44,21 +43,19 @@ public class AddNoticeWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		textFieldAddNotice = new JTextField();
-		textFieldAddNotice.setBounds(10, 11, 414, 185);
-		contentPane.add(textFieldAddNotice);
-		textFieldAddNotice.setColumns(10);
+		JTextArea textAreaNoticeContents = new JTextArea();
+		textAreaNoticeContents.setBounds(10, 11, 414, 179);
+		contentPane.add(textAreaNoticeContents);
 		
-		JButton btnConfirmNotice = new JButton("Dodaj");
-		btnConfirmNotice.addMouseListener(new MouseAdapter() {
+		JButton btnSaveNotice = new JButton("Dodaj");
+		btnSaveNotice.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
 			}
 		});
-		btnConfirmNotice.setFont(new Font("Tahoma", Font.BOLD, 16));
-		btnConfirmNotice.setBounds(10, 207, 414, 43);
-		contentPane.add(btnConfirmNotice);
+		btnSaveNotice.setFont(new Font("Tahoma", Font.BOLD, 20));
+		btnSaveNotice.setBounds(154, 201, 126, 49);
+		contentPane.add(btnSaveNotice);
 	}
-
 }

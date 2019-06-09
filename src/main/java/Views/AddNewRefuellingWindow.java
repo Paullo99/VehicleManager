@@ -107,7 +107,6 @@ public class AddNewRefuellingWindow extends JFrame {
 						AddNewRefuelling(refuellingData);
 			}
 			
-		
 			/*
 			 * Metoda odpowiadaj¹ca za dodanie nowego tankowania do bazy danych
 			 */
@@ -121,7 +120,7 @@ public class AddNewRefuellingWindow extends JFrame {
 			                + "'" + refuellingData.getPrice() + "',"
 			                + "'" + refuellingData.getAmountOfFuel() + "',"
 			                + "'" + refuellingData.getDateOfEvent() + "',"
-			                		+ "'" + refuellingData.getAmountOfFuel() + "'"
+			                + "'" + refuellingData.getAmountOfFuel() + "'"
 			                + ");";
 			        System.out.println(SQL);
 			        stat.executeUpdate(SQL);
