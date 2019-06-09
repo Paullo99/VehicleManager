@@ -1,5 +1,4 @@
 package Classes;
-import java.sql.Date;
 
 public class Service extends EventProperties {
 
@@ -8,7 +7,7 @@ public class Service extends EventProperties {
 	private String type;
 	
 	public Service(String name, String description, String type,
-			String course, String price, Date dateOfEvent, int vehicleId) {
+			String course, String price, java.util.Date dateOfEvent, int vehicleId) {
 			this.name = name;
 			this.description = description;
 			this.type = type;
