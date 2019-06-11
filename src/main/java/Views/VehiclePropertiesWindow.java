@@ -282,9 +282,14 @@ public class VehiclePropertiesWindow extends JFrame {
             	textFieldLoad.setText(result.getString("load"));
             	textFieldRegistrationNumber.setText(result.getString("registrationNumber"));
             	imgName=result.getString("imageUrl");
-            	
              }
-            imgLabel.setIcon(new ImageIcon("C:\\Users\\Kewin\\Studia\\projekt PO\\VehicleManager\\VehicleManager\\src\\main\\images\\"+imgName.trim()));
+            try {
+            	 imgLabel.setIcon(new ImageIcon("src\\main\\images\\"+imgName.trim()));
+            }
+            catch(Exception e){
+                System.out.println("Nie mogê wyszukaæ danych " + e.getMessage());
+       	 		imgLabel.setIcon(new ImageIcon("src\\main\\images\\ferrari.png"));
+            }
             result.close();
             stat.close();
             connection.close();
