@@ -285,7 +285,7 @@ public class RegisterWindow extends JFrame {
 					addNewPhysicalUser(userData);
 				}
 				else {
-					Company companyData = new Company(textFieldFirmName.getText(), Double.parseDouble(textFieldNip.getText()),textFieldPhone.getText(), 
+					Company companyData = new Company(textFieldFirmName.getText(), textFieldNip.getText(),textFieldPhone.getText(), 
 							textFieldEmail.getText(), textFieldCountry.getText(), textFieldCity.getText(), textFieldStreet.getText(), 
 							Integer.parseInt(textFieldNumberOfBuilding.getText()), textFieldPostCode.getText(), textFieldLogin.getText(), textFieldPassword.getText() );
 					addNewCompany(companyData);
