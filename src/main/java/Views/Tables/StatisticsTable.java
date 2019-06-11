@@ -87,30 +87,34 @@ public class StatisticsTable extends JTable{
 	 * funkcja zwraca wartoœæ œredni¹ spalania
 	 * @return œrednie spalanie
 	 */
-	public String avgFuelConsumption(int vehicleId){
+	public float avgFuelConsumption(int vehicleId){
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
+        /**
+         * Polecenie wyszukania
+         */
+		String searchSQL = "SELECT course, amountOfFuel FROM Refuelling WHERE VehicleId=="+vehicleId+" ORDER BY course DESC LIMIT 2;";
+    	System.out.print(searchSQL);
 		try {
+			int[] course = new int[2];
+			int[] fuel = new int[2];
+			int i = 0;
             Connection connection = JavaDB.connectToDB();
             Statement stat = connection.createStatement();
-            /**
-             * Polecenie wyszukania
-             */
-            String searchSQL = "SELECT Id, mark, model, registrationNumber FROM Vehicle;";
             ResultSet result = stat.executeQuery(searchSQL);
-            System.out.println("wynik polecenia:\n" + searchSQL);
-
             while (result.next()) {
-                model.addRow(new Object[] {result.getInt("Id"), result.getString("mark"), result.getString("model"),
-                		result.getString("registrationNumber"),"",""
-                });
+            	course[i] = result.getInt("course");
+            	fuel[i] = result.getInt("amountOfFuel");
+            	i++;
              }
+            float consumption = 100*fuel[0]/(course[0]-course[1]);
             result.close();
             stat.close();
             connection.close();
+            return consumption;
         } catch (Exception e) {
             System.out.println("Nie mogê wyszukaæ danych " + e.getMessage());
         }
-		return "";
+		return 0;
 	}
 	
 	/**
