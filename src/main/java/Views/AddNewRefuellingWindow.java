@@ -48,6 +48,7 @@ public class AddNewRefuellingWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public AddNewRefuellingWindow(JFrame parentFrame) {
+		setTitle("Dodaj nowe tankowanie");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 541, 371);
 		contentPane = new JPanel();
@@ -94,7 +95,9 @@ public class AddNewRefuellingWindow extends JFrame {
 		CalendarOfRefuelling.setBounds(68, 149, 189, 172);
 		contentPane.add(CalendarOfRefuelling);
 
-		
+		/*
+		 * Przycisk odpowiedzialny za dodanie nowego tankowania
+		 */
 		JButton btnNewButton = new JButton("Zatwierdz");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			/*

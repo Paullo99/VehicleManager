@@ -7,6 +7,9 @@ public class Review extends EventsWithExpirationDate {
 	private Date expirationDate;
 	private String notices;
 
+	/*
+	 * Konstruktor obiektu Review
+	 */
 	public Review(boolean isPassed, Date date, String notices,
 			String course, String price, Date date2, int vehicleId) {
 			this.isPassed = isPassed;

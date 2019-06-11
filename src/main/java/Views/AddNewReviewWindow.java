@@ -50,6 +50,7 @@ public class AddNewReviewWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public AddNewReviewWindow() {
+		setTitle("Dodaj nowy przegl¹d");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 695, 433);
 		contentPane = new JPanel();
@@ -133,6 +134,9 @@ public class AddNewReviewWindow extends JFrame {
 		btnConfirmNewReview.setBounds(283, 263, 143, 67);
 		contentPane.add(btnConfirmNewReview);
 		
+		/*
+		 * Przycisk odpowiedzialny za dodawanie nowego przegl¹du
+		 */
 		btnConfirmNewReview.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -146,6 +150,9 @@ public class AddNewReviewWindow extends JFrame {
 				
 						AddNewReview(reviewData);
 			}
+			/*
+			 * Dodawanie nowego przegl¹du do bazy danych
+			 */
 				private void AddNewReview(Review reviewData) {
 					try {
 						Connection connection = JavaDB.connectToDB();

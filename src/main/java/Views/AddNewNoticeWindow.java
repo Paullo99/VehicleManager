@@ -35,6 +35,7 @@ public class AddNewNoticeWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public AddNewNoticeWindow() {
+		setTitle("Dodaj now¹ uwagê");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -46,6 +47,9 @@ public class AddNewNoticeWindow extends JFrame {
 		textAreaNoticeContents.setBounds(10, 11, 414, 179);
 		contentPane.add(textAreaNoticeContents);
 		
+		/*
+		 * Przycisk odpowiadaj¹cy za dodawanie nowej uwagi
+		 */
 		JButton btnSaveNotice = new JButton("Dodaj");
 		btnSaveNotice.addMouseListener(new MouseAdapter() {
 			@Override

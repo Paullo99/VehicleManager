@@ -52,6 +52,7 @@ public class AddVehicleWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public AddVehicleWindow() {
+		setTitle("Dodaj nowy pojazd");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1162, 777);
 		setLocationRelativeTo(null);

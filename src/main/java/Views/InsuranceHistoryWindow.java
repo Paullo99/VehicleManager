@@ -38,6 +38,7 @@ public class InsuranceHistoryWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public InsuranceHistoryWindow() {
+		setTitle("Historia ubezpieczeñ");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1296, 611);
 		getContentPane().setLayout(null);
@@ -74,6 +75,7 @@ public void addRowToTable() {
         ResultSet result = stat.executeQuery(searchSQL);
         System.out.println("wynik polecenia:\n" + searchSQL);
 
+        //pêtla odpowiedzialna za dodawanie wierszy do tabeli
         while (result.next()) {
             model.addRow(new Object[] {result.getInt("vehicleId"), result.getString("type"), result.getString("policyNumber"), result.getString("expirationDate"),
             		result.getString("course"), result.getString("price"),result.getString("dateOfEvent"), result.getString("description"),""

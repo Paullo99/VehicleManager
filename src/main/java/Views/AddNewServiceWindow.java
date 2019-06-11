@@ -50,6 +50,7 @@ public class AddNewServiceWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public AddNewServiceWindow() {
+		setTitle("Dodaj nowy serwis");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 488, 378);
 		contentPane = new JPanel();
@@ -125,6 +126,9 @@ public class AddNewServiceWindow extends JFrame {
 		calendar.setBounds(257, 44, 152, 153);
 		contentPane.add(calendar);
 		
+		/*
+		 * Przycisk odpowiedzialny za dodawanie us³ugi
+		 */
 		JButton btnAddNewService = new JButton("Dodaj us\u0142ug\u0119");
 		btnAddNewService.addMouseListener(new MouseAdapter() {
 			@Override
@@ -135,6 +139,9 @@ public class AddNewServiceWindow extends JFrame {
 				Service serviceData = new Service(textFieldNameOfService.getText(), textFieldDescriptionOfService.getText(), textFieldTypeOfService.getText(),textFieldCourseOfService.getText(), textFieldPriceOfService.getText(), calendar.getDate(),Integer.parseInt(textFieldVegicleIdOfService.getText()));
 				AddNewService(serviceData);
 			}
+			/*
+			 * Dodawanie nowego serwisu do bazy danych
+			 */
 				private void AddNewService(Service serviceData) {
 					try {
 						Connection connection = JavaDB.connectToDB();

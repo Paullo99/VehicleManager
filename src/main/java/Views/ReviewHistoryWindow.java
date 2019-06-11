@@ -41,6 +41,7 @@ public class ReviewHistoryWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public ReviewHistoryWindow() {
+		setTitle("Historia przegl¹dów");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1296, 611);
 		getContentPane().setLayout(null);
@@ -77,6 +78,7 @@ public void addRowToTable() {
         ResultSet result = stat.executeQuery(searchSQL);
         System.out.println("wynik polecenia:\n" + searchSQL);
 
+        //pêtla odpowiadaj¹ca za dodawanie wierszy do tabeli
         while (result.next()) {
             model.addRow(new Object[] {result.getInt("vehicleId"), result.getString("isPassed"), result.getString("expirationDate"),
             		result.getString("course"), result.getString("price"),result.getString("dateOfEvent"), result.getString("notices"),""

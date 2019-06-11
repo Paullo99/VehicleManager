@@ -42,6 +42,7 @@ public class ServiceHistoryWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public ServiceHistoryWindow() {
+		setTitle("Historia serwisów");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1296, 611);
 		getContentPane().setLayout(null);
@@ -77,7 +78,8 @@ public void addRowToTable() {
         String searchSQL = "SELECT vehicleId, name, description, type, course, price, dateOfEvent FROM Service;";
         ResultSet result = stat.executeQuery(searchSQL);
         System.out.println("wynik polecenia:\n" + searchSQL);
-
+        
+        //pêtla odpowiedzialna za dodawanie nowych wierszy do tabeli
         while (result.next()) {
             model.addRow(new Object[] {result.getInt("vehicleId"), result.getString("name"), result.getString("dateOfEvent"),
             		result.getString("type"), result.getString("price"),result.getString("course"), result.getString("description"),""

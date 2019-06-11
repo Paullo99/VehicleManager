@@ -8,6 +8,9 @@ public class Insurance extends EventsWithExpirationDate {
 	private Date expirationDate;
 	private String description;
 	
+	/*
+	 * Konstruktor obiektu Insurance
+	 */
 	public Insurance(String type, String policyNumber, Date date, String description,
 			String course, String price, Date date2, int vehicleId) {
 			this.type = type;

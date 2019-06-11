@@ -54,6 +54,7 @@ public class AddNewInsuranceWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public AddNewInsuranceWindow() {
+		setTitle("Dodaj nowe ubezpieczenie");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 680, 456);
 		contentPane = new JPanel();
@@ -160,6 +161,9 @@ public class AddNewInsuranceWindow extends JFrame {
 			
 				AddNewInsurance(insuranceData);
 			}
+			/*
+			 * Dodawanie nowego ubezpieczenia do bazy danych
+			 */
 				private void AddNewInsurance(Insurance insuranceData) {
 					try {
 						Connection connection = JavaDB.connectToDB();

@@ -44,7 +44,8 @@ public class MainWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MainWindow() {		
+	public MainWindow() {	
+		setTitle("VehicleManager");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1162, 660);
 		setLocationRelativeTo(null);
@@ -79,7 +80,7 @@ public class MainWindow extends JFrame {
 		btnAddVehicle.setToolTipText("");
 		btnAddVehicle.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		/**
-		 * przycisk otwieraj¹cy okno statystyk
+		 * Przycisk otwieraj¹cy okno statystyk
 		 */
 		JButton btnStatistics = new JButton("Statystyki");
 		btnStatistics.setFont(new Font("Tahoma", Font.PLAIN, 20));

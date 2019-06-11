@@ -15,6 +15,9 @@ public class Vehicle implements IVehicle {
 	private String imageUrl;
 	private String registrationNumber;
 	
+	/*
+	 * Konstruktor obiektu Vehicle
+	 */
 	public Vehicle(int vehicleId, String vehicleType, String mark,	String model,String course, 
 					int yearOfProduction, String engineCapacity, int power,
 					String fuelType, int load, String imageUrl,	String registrationNumber) {
