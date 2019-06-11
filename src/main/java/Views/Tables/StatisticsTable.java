@@ -60,7 +60,34 @@ public class StatisticsTable extends JTable{
 	 * Metoda odpowiadaj¹ca za pobieranie pojazdów z bazy danych i dodawanie ich w formie wierszy tabeli
 	 */
 	private void addRowToTable() {
-		
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		try {
+            Connection connection = JavaDB.connectToDB();
+            Statement stat = connection.createStatement();
+            /**
+             * Polecenie wyszukania
+             */
+            String searchSQL = "SELECT Id, mark, model, registrationNumber FROM Vehicle;";
+            ResultSet result = stat.executeQuery(searchSQL);
+            System.out.println("wynik polecenia:\n" + searchSQL);
+
+            while (result.next()) {
+                model.addRow(new Object[] {result.getInt("Id"), result.getString("mark"), result.getString("model"),
+                		result.getString("registrationNumber"),avgFuelConsumption(result.getInt("Id")),""
+                });
+             }
+            result.close();
+            stat.close();
+            connection.close();
+        } catch (Exception e) {
+            System.out.println("Nie mogê wyszukaæ danych " + e.getMessage());
+        }
+	}
+	/**
+	 * funkcja zwraca wartoœæ œredni¹ spalania
+	 * @return œrednie spalanie
+	 */
+	public String avgFuelConsumption(int vehicleId){
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 		try {
             Connection connection = JavaDB.connectToDB();
@@ -83,7 +110,9 @@ public class StatisticsTable extends JTable{
         } catch (Exception e) {
             System.out.println("Nie mogê wyszukaæ danych " + e.getMessage());
         }
+		return "";
 	}
+	
 	/**
 	 * Klasa odpowiadaj¹ca za generowanie przycisku
 	 */
