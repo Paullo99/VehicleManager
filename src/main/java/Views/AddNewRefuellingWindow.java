@@ -35,7 +35,7 @@ public class AddNewRefuellingWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddNewRefuellingWindow frame = new AddNewRefuellingWindow(null);
+					AddNewRefuellingWindow frame = new AddNewRefuellingWindow(null, 1);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +47,7 @@ public class AddNewRefuellingWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddNewRefuellingWindow(JFrame parentFrame) {
+	public AddNewRefuellingWindow(JFrame parentFrame, int vehicleId) {
 		setTitle("Dodaj nowe tankowanie");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 541, 371);
@@ -122,7 +122,7 @@ public class AddNewRefuellingWindow extends JFrame {
 			                + "'" + refuellingData.getPrice() + "',"
 			                + "'" + refuellingData.getAmountOfFuel() + "',"
 			                + "'" + refuellingData.getDateOfEvent() + "',"
-			                + "'" + refuellingData.getAmountOfFuel() + "'"
+			                + "'" + vehicleId + "'"
 			                + ");";
 			        System.out.println(SQL);
 			        stat.executeUpdate(SQL);

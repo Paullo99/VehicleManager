@@ -210,7 +210,7 @@ public class VehiclePropertiesWindow extends JFrame {
 		btnAddFueling.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AddNewRefuellingWindow refuellingWindow = new AddNewRefuellingWindow(null);
+				AddNewRefuellingWindow refuellingWindow = new AddNewRefuellingWindow(null, vehicleId);
 				refuellingWindow.show();
 			}
 		});
