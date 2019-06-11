@@ -90,7 +90,7 @@ public class MainWindow extends JFrame {
 		btnHelp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					JOptionPane.showMessageDialog(null,"<html> Wersja programu: 1.0.0 <br>"
-							+ "Data powstania: __.06.2019 r. <br><br>"
+							+ "Data powstania: 11.06.2019 r. <br><br>"
 							+ "Autorzy: <br>"
 							+ "Kewin Warzecha <br>"
 							+ "Artur So³tys <br>"
