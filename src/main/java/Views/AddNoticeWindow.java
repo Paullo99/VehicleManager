@@ -49,7 +49,7 @@ public class AddNoticeWindow extends JFrame {
 		contentPane.add(textFieldAddNotice);
 		textFieldAddNotice.setColumns(10);
 		
-		/*
+		/**
 		 * Przycisk odpowiedzialny za dodanie notatki 
 		 */
 		JButton btnConfirmNotice = new JButton("Dodaj");

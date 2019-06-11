@@ -151,7 +151,7 @@ public class AddNewInsuranceWindow extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				
-				/*
+				/**
 				 * Tworzenie nowego obiektu Ubezpieczenie
 				 */
 				Insurance insuranceData = new Insurance(textFieldTypeOfInsurance.getText(),textFieldPolicyNumber.getText(),
@@ -161,7 +161,7 @@ public class AddNewInsuranceWindow extends JFrame {
 			
 				AddNewInsurance(insuranceData);
 			}
-			/*
+			/**
 			 * Dodawanie nowego ubezpieczenia do bazy danych
 			 */
 				private void AddNewInsurance(Insurance insuranceData) {
@@ -183,7 +183,7 @@ public class AddNewInsuranceWindow extends JFrame {
 				        stat.executeUpdate(SQL);
 				        stat.close();
 				        connection.close();
-				        /*
+				        /**
 				         *  Komunikat i wydrukowanie koñcowej formy polecenia SQL
 				         */
 				        System.out.println("Polecenie: \n" + SQL + "\n wykonane.");

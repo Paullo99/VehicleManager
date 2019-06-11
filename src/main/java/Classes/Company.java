@@ -5,7 +5,7 @@ public class Company extends Profile {
 	private String name;
 	private String nip;
 	
-	/*
+	/**
 	 * Konstruktor obiektu Company
 	 */
 	public Company(String name, String nip, String phone, String email, String country,

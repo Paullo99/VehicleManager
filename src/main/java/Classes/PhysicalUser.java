@@ -8,7 +8,7 @@ public class PhysicalUser extends Profile {
 	private Date dateOfBirth;
 	private String pesel;
 	
-	/*
+	/**
 	 * Konstruktor obiektu Physical User
 	 */
 	public PhysicalUser(String name, String surname, Date dateOfBirth, String pesel,

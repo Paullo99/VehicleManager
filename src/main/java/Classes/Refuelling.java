@@ -5,7 +5,7 @@ public class Refuelling extends EventProperties {
 
 	private String amountOfFuel;
 	
-	/*
+	/**
 	 * Konstruktor obiektu Refuelling
 	 */
 	public Refuelling(String course, String price, String amountOfFuel, java.util.Date date, int vehicleId) {

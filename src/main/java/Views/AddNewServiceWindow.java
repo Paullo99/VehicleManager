@@ -126,20 +126,20 @@ public class AddNewServiceWindow extends JFrame {
 		calendar.setBounds(257, 44, 152, 153);
 		contentPane.add(calendar);
 		
-		/*
+		/**
 		 * Przycisk odpowiedzialny za dodawanie us³ugi
 		 */
 		JButton btnAddNewService = new JButton("Dodaj us\u0142ug\u0119");
 		btnAddNewService.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				/*
+				/**
 				 * Tworzenie nowego obiektu serwisu
 				 */
 				Service serviceData = new Service(textFieldNameOfService.getText(), textFieldDescriptionOfService.getText(), textFieldTypeOfService.getText(),textFieldCourseOfService.getText(), textFieldPriceOfService.getText(), calendar.getDate(),Integer.parseInt(textFieldVegicleIdOfService.getText()));
 				AddNewService(serviceData);
 			}
-			/*
+			/**
 			 * Dodawanie nowego serwisu do bazy danych
 			 */
 				private void AddNewService(Service serviceData) {
@@ -160,7 +160,7 @@ public class AddNewServiceWindow extends JFrame {
 				        stat.executeUpdate(SQL);
 				        stat.close();
 				        connection.close();
-				        /*
+				        /**
 				         *  Komunikat i wydrukowanie koñcowej formy polecenia SQL
 				         */
 				        System.out.println("Polecenie: \n" + SQL + "\n wykonane.");

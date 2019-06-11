@@ -174,19 +174,25 @@ public class AddVehicleWindow extends JFrame {
 		contentPaneLoad.add(textFieldRegistrationNumber);
 		
 		JButton btnAddVehicle = new JButton("Dodaj pojazd");
-		//dodawanie nowego pojazdu po klikniêciu przycisku Dodaj pojazd
+		/**
+		 * dodawanie nowego pojazdu po klikniêciu przycisku Dodaj pojazd
+		 */
 		btnAddVehicle.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				
-				//tworzenie obiektu
+				/**
+				 * tworzenie obiektu
+				 */
 				Vehicle vehicle = new Vehicle(0, comboBoxVehicleType.getSelectedItem().toString(),textFieldMark.getText(),textFieldModel.getText(),
 						textFieldCourse.getText(), Integer.parseInt(textFieldYearOfProduction.getText()), textFieldEngineCapacity.getText(),
 						Integer.parseInt(textFieldPower.getText()),comboBoxFuelType.getSelectedItem().toString(), Integer.parseInt(textFieldLoad.getText()),
 						textFieldImageUrl.getText(), textFieldRegistrationNumber.getText());
 				
 				addNewVehicle(vehicle);
-				//zamkniêcie bie¿¹cego okna i otwarcie poprzedniego
+				/**
+				 * zamkniêcie bie¿¹cego okna i otwarcie poprzedniego
+				 */
 				AddVehicleWindow.this.dispose();
 			}
 		});
@@ -197,7 +203,7 @@ public class AddVehicleWindow extends JFrame {
 		contentPaneLoad.add(btnAddVehicle);
 	}
 	
-	/*
+	/**
 	 * Metoda odpowiadaj¹ca za dodanie nowego pojazdu do bazy danych
 	 */
 	public void addNewVehicle(Vehicle vehicle){
@@ -222,7 +228,9 @@ public class AddVehicleWindow extends JFrame {
 	        stat.executeUpdate(SQL);
 	        stat.close();
 	        connection.close();
-	        // Komunikat i wydrukowanie koñcowej formy polecenia SQL
+	        /**
+	         * Komunikat i wydrukowanie koñcowej formy polecenia SQL
+	         */
 	        System.out.println("Polecenie: \n" + SQL + "\n wykonane.");
 	    } catch (Exception e) {
 	        System.out.println("Nie mogê dodaæ danych " + e.getMessage());

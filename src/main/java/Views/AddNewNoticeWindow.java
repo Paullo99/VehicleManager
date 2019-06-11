@@ -47,7 +47,7 @@ public class AddNewNoticeWindow extends JFrame {
 		textAreaNoticeContents.setBounds(10, 11, 414, 179);
 		contentPane.add(textAreaNoticeContents);
 		
-		/*
+		/**
 		 * Przycisk odpowiadaj¹cy za dodawanie nowej uwagi
 		 */
 		JButton btnSaveNotice = new JButton("Dodaj");

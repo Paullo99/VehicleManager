@@ -65,7 +65,7 @@ public class ServiceHistoryWindow extends JFrame {
 	}
 
 	
-	/*
+	/**
 	 * Metoda odpowiadaj¹ca za pobieranie danych o serwisie z bazy danych i dodawanie ich w formie wierszy tabeli
 	 */
 public void addRowToTable() {
@@ -74,12 +74,16 @@ public void addRowToTable() {
 	try {
         Connection connection = JavaDB.connectToDB();
         Statement stat = connection.createStatement();
-        // Polecenie wyszukania
+        /**
+         *  Polecenie wyszukania
+         */
         String searchSQL = "SELECT vehicleId, name, description, type, course, price, dateOfEvent FROM Service;";
         ResultSet result = stat.executeQuery(searchSQL);
         System.out.println("wynik polecenia:\n" + searchSQL);
         
-        //pêtla odpowiedzialna za dodawanie nowych wierszy do tabeli
+        /**
+         * pêtla odpowiedzialna za dodawanie nowych wierszy do tabeli
+         */
         while (result.next()) {
             model.addRow(new Object[] {result.getInt("vehicleId"), result.getString("name"), result.getString("dateOfEvent"),
             		result.getString("type"), result.getString("price"),result.getString("course"), result.getString("description"),""

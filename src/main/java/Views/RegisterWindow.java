@@ -218,7 +218,9 @@ public class RegisterWindow extends JFrame {
 		
 		textFieldNip.hide();
 		
-		//radio button odpowiadaj¹cy za ukrywanie pól dla u¿ytkowników a pokazywanie dla firm
+		/**
+		 * radio button odpowiadaj¹cy za ukrywanie pól dla u¿ytkowników a pokazywanie dla firm
+		 */
 		JRadioButton rdbtnCompany = new JRadioButton("Firma");
 		rdbtnCompany.addMouseListener(new MouseAdapter() {
 			@Override
@@ -239,7 +241,9 @@ public class RegisterWindow extends JFrame {
 		rdbtnCompany.setBounds(531, 175, 109, 23);
 		contentPane.add(rdbtnCompany);
 		
-		//radio button odpowiadaj¹cy za ukrywanie pól dla firm a pokazywanie dla u¿ytkowników
+		/**
+		 * radio button odpowiadaj¹cy za ukrywanie pól dla firm a pokazywanie dla u¿ytkowników
+		 */
 		JRadioButton rdbtnPhysicalUser = new JRadioButton("Osoba fizyczna");
 		rdbtnPhysicalUser.addMouseListener(new MouseAdapter() {
 			@Override
@@ -264,20 +268,26 @@ public class RegisterWindow extends JFrame {
 		typeOfProfile.add(rdbtnPhysicalUser);
 		typeOfProfile.add(rdbtnCompany);
 		
-		//dodawanie nowego u¿ytkownika po klikniêciu przycisku Zarejestruj
+		/**
+		 * dodawanie nowego u¿ytkownika po klikniêciu przycisku Zarejestruj
+		 */
 		btnRegister.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
 				if(rdbtnPhysicalUser.isSelected()) {
-					//pobieranie daty z PESELU
+					/**
+					 * pobieranie daty z PESELU
+					 */
 					char[] pesel = textFieldPesel.getText().toCharArray();
 					int year = Integer.parseInt(""+pesel[0]+pesel[1]);
 					int month = Integer.parseInt(""+pesel[2]+pesel[3])-1;
 					int day = Integer.parseInt(""+pesel[4]+pesel[5]);
 					Date dateOfBirth = new Date(year, month, day);
 					
-					//tworzenie obiektu 
+					/**
+					 * tworzenie obiektu 
+					 */
 					PhysicalUser userData = new PhysicalUser( textFieldVorname.getText(), textFieldName.getText(), dateOfBirth, textFieldPesel.getText(), 
 							textFieldPhone.getText(), textFieldEmail.getText(), textFieldCountry.getText(), textFieldCity.getText(), textFieldStreet.getText(), 
 							Integer.parseInt(textFieldNumberOfBuilding.getText()), textFieldPostCode.getText(), textFieldLogin.getText(), textFieldPassword.getText());
@@ -290,7 +300,9 @@ public class RegisterWindow extends JFrame {
 					addNewCompany(companyData);
 				}
 				
-				//zamkniêcie bie¿¹cego okna i otwarcie poprzedniego
+				/**
+				 * zamkniêcie bie¿¹cego okna i otwarcie poprzedniego
+				 */
 				RegisterWindow.this.dispose();
 				if((parentFrame!=null)) {parentFrame.show();}
 			}
@@ -300,7 +312,7 @@ public class RegisterWindow extends JFrame {
 		
 	}
 
-	/*
+	/**
 	 * Metoda odpowiadaj¹ca za dodanie nowego u¿ytkownika do bazy danych
 	 */
 	public void addNewPhysicalUser(PhysicalUser userData) {
@@ -329,14 +341,16 @@ public class RegisterWindow extends JFrame {
 	        stat.executeUpdate(SQL);
 	        stat.close();
 	        connection.close();
-	        // Komunikat i wydrukowanie koñcowej formy polecenia SQL
+	        /**
+	         * Komunikat i wydrukowanie koñcowej formy polecenia SQL
+	         */
 	        System.out.println("Polecenie: \n" + SQL + "\n wykonane.");
 	    } catch (Exception e) {
 	        System.out.println("Nie mogê dodaæ danych " + e.getMessage());
 	    }
 	}
 	    
-    /*
+    /**
 	 * Metoda odpowiadaj¹ca za dodanie nowej firmy do bazy danych
 	 */
     public void addNewCompany(Company companyData) {
@@ -365,7 +379,9 @@ public class RegisterWindow extends JFrame {
         stat.executeUpdate(SQL);
         stat.close();
         connection.close();
-        // Komunikat i wydrukowanie koñcowej formy polecenia SQL
+        /**
+         * Komunikat i wydrukowanie koñcowej formy polecenia SQL
+         */
         System.out.println("Polecenie: \n" + SQL + "\n wykonane.");
     } catch (Exception e) {
         System.out.println("Nie mogê dodaæ danych " + e.getMessage());

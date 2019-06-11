@@ -161,7 +161,9 @@ public class MainWindow extends JFrame {
 		);
 		contentPanel.setLayout(gl_contentPanel);
 		
-		//Wywo³anie obiektu tworz¹cego tabelê pojazdów
+		/**
+		 * Wywo³anie obiektu tworz¹cego tabelê pojazdów
+		 */
 		MainTable vehicleMainTable = new MainTable(contentPanel, scrollPane);
 		
 		/**

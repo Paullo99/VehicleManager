@@ -52,7 +52,7 @@ public class ServicesWindow extends JFrame {
 		lblSerwisy.setBounds(263, 11, 150, 58);
 		contentPane.add(lblSerwisy);
 		
-		/*
+		/**
 		 * Przycisk otwieraj¹cy nowe okno - Dodaj Us³ugê
 		 */
 		JButton btnAddService = new JButton("Dodaj us\u0142ug\u0119");
@@ -67,7 +67,7 @@ public class ServicesWindow extends JFrame {
 		btnAddService.setBounds(10, 106, 172, 77);
 		contentPane.add(btnAddService);
 		
-		/*
+		/**
 		 * Przycisk otwieraj¹cy nowe okno - Dodaj przegl¹d
 		 */
 		JButton btnAddReview = new JButton("Dodaj Przegl\u0105d");
@@ -81,7 +81,7 @@ public class ServicesWindow extends JFrame {
 		btnAddReview.setBounds(246, 106, 167, 77);
 		contentPane.add(btnAddReview);
 		
-		/*
+		/**
 		 * Przycisk otwieraj¹cy nowe okno - Dodaj ubezpieczenie
 		 */
 		JButton btnAddInsurance = new JButton("<html> <center> Dodaj <br> Ubezpieczenie </html>");
@@ -99,7 +99,7 @@ public class ServicesWindow extends JFrame {
 		btnAddInsurance.setBounds(487, 106, 167, 77);
 		contentPane.add(btnAddInsurance);
 		
-		/*
+		/**
 		 * Przycisk odpowiedzialny za zamkniêcie okna Serwisy
 		 */
 		JButton btnSaveServices = new JButton("Zamknij");
@@ -113,7 +113,7 @@ public class ServicesWindow extends JFrame {
 		btnSaveServices.setBounds(263, 341, 133, 77);
 		contentPane.add(btnSaveServices);
 		
-		/*
+		/**
 		 * Przycisk otwieraj¹cy nowe okno - Historia serwisów
 		 */
 		JButton btnHistoryOfServices = new JButton("<html> <center> Historia <br> us³ug </html>");
@@ -127,7 +127,7 @@ public class ServicesWindow extends JFrame {
 		btnHistoryOfServices.setBounds(10, 217, 172, 77);
 		contentPane.add(btnHistoryOfServices);
 		
-		/*
+		/**
 		 * Przycisk otwieraj¹cy nowe okno - Historia przegl¹dów
 		 */
 		JButton btnHistoryOfReviews = new JButton("<html> <center> Historia <br> przegl¹dów </html>");
@@ -141,7 +141,7 @@ public class ServicesWindow extends JFrame {
 		btnHistoryOfReviews.setBounds(246, 217, 167, 77);
 		contentPane.add(btnHistoryOfReviews);
 		
-		/*
+		/**
 		 * Przycisk otwieraj¹cy nowe okno - historia ubezpieczeñ
 		 */
 		JButton btnHistoryOfInsurances = new JButton("<html> <center> Historia <br> Ubezpieczeñ </html>");

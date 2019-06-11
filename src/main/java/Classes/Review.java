@@ -7,7 +7,7 @@ public class Review extends EventsWithExpirationDate {
 	private Date expirationDate;
 	private String notices;
 
-	/*
+	/**
 	 * Konstruktor obiektu Review
 	 */
 	public Review(boolean isPassed, Date date, String notices,

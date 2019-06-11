@@ -184,7 +184,7 @@ public class VehiclePropertiesWindow extends JFrame {
 		contentPane.add(textFieldRegistrationNumber);
 		textFieldRegistrationNumber.setColumns(10);
 		
-		/*
+		/**
 		 * Przycisk odpowiedzialny za dodawanie uwagi
 		 */
 		JButton btnAddNotice = new JButton("Dodaj uwag\u0119");
@@ -199,7 +199,7 @@ public class VehiclePropertiesWindow extends JFrame {
 		btnAddNotice.setBounds(34, 360, 103, 35);
 		contentPane.add(btnAddNotice);
 		
-		/*
+		/**
 		 * Przycisk odpowiedzilany za dodawanie tankowania
 		 */
 		JButton btnAddFueling = new JButton("<html> <center> Dodaj <br> tankowanie </html>");
@@ -213,7 +213,7 @@ public class VehiclePropertiesWindow extends JFrame {
 		btnAddFueling.setBounds(147, 360, 103, 35);
 		contentPane.add(btnAddFueling);
 		
-		/*
+		/**
 		 * Przycisk odpowiedzialny za ustawienie przypomienia 
 		 */
 		JButton btnReminder = new JButton("Przypomnienie");
@@ -251,13 +251,17 @@ public class VehiclePropertiesWindow extends JFrame {
 		try {
             Connection connection = JavaDB.connectToDB();
             Statement stat = connection.createStatement();
-            // Polecenie wyszukania
+            /**
+             * Polecenie wyszukania
+             */
             String searchSQL = "SELECT * FROM Vehicle Where Id ='"+vehicleId+"';";
 
             ResultSet result = stat.executeQuery(searchSQL);
             System.out.println("wynik polecenia:\n" + searchSQL);
             
-            //dodawanie wartoœci do textBoxów
+            /**
+             * dodawanie wartoœci do textBoxów
+             */
             while (result.next()) {
             	textFieldVehicleType.setText(result.getString("vehicleType"));
             	textFieldVehicleMark.setText(result.getString("mark"));

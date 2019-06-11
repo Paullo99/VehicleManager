@@ -64,7 +64,7 @@ public class ReviewHistoryWindow extends JFrame {
 	}
 
 	
-	/*
+	/**
 	 * Metoda odpowiadaj¹ca za pobieranie danych o przegl¹dach z bazy danych i dodawanie ich w formie wierszy tabeli
 	 */
 public void addRowToTable() {
@@ -73,12 +73,16 @@ public void addRowToTable() {
 	try {
         Connection connection = JavaDB.connectToDB();
         Statement stat = connection.createStatement();
-        // Polecenie wyszukania
+        /**
+         *  Polecenie wyszukania
+         */
         String searchSQL = "SELECT vehicleId, isPassed, notices, expirationDate, course, price, dateOfEvent FROM Review;";
         ResultSet result = stat.executeQuery(searchSQL);
         System.out.println("wynik polecenia:\n" + searchSQL);
 
-        //pêtla odpowiadaj¹ca za dodawanie wierszy do tabeli
+        /**
+         * pêtla odpowiadaj¹ca za dodawanie wierszy do tabeli
+         */
         while (result.next()) {
             model.addRow(new Object[] {result.getInt("vehicleId"), result.getString("isPassed"), result.getString("expirationDate"),
             		result.getString("course"), result.getString("price"),result.getString("dateOfEvent"), result.getString("notices"),""

@@ -41,7 +41,9 @@ public class StatisticsTable extends JTable{
 					}
 				}
 		);
-		//Wywo³anie funkcji pobieraj¹cej dane z bazy danych do tabeli
+		/**
+		 * Wywo³anie funkcji pobieraj¹cej dane z bazy danych do tabeli
+		 */
 		addRowToTable();
 	}
 	
@@ -54,7 +56,9 @@ public class StatisticsTable extends JTable{
 		try {
             Connection connection = JavaDB.connectToDB();
             Statement stat = connection.createStatement();
-            // Polecenie wyszukania
+            /**
+             * Polecenie wyszukania
+             */
             String searchSQL = "SELECT Id, mark, model, registrationNumber FROM Vehicle;";
             ResultSet result = stat.executeQuery(searchSQL);
             System.out.println("wynik polecenia:\n" + searchSQL);
@@ -71,7 +75,7 @@ public class StatisticsTable extends JTable{
             System.out.println("Nie mogê wyszukaæ danych " + e.getMessage());
         }
 	}
-	/*
+	/**
 	 * Klasa odpowiadaj¹ca za generowanie przycisku
 	 */
 	class ButtonRenderer extends JButton implements TableCellRenderer {
@@ -84,7 +88,7 @@ public class StatisticsTable extends JTable{
 			return this;
 		}
 	}
-	/*
+	/**
 	 * Klasa odpowiadaj¹ca za w³aœciwoœci przycisku
 	 */
 	class ButtonEditor extends DefaultCellEditor {

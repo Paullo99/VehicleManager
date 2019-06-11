@@ -95,12 +95,12 @@ public class AddNewRefuellingWindow extends JFrame {
 		CalendarOfRefuelling.setBounds(68, 149, 189, 172);
 		contentPane.add(CalendarOfRefuelling);
 
-		/*
+		/**
 		 * Przycisk odpowiedzialny za dodanie nowego tankowania
 		 */
 		JButton btnNewButton = new JButton("Zatwierdz");
 		btnNewButton.addMouseListener(new MouseAdapter() {
-			/*
+			/**
 			 * Tworzenie nowego obiektu klasy Refuelling
 			 */
 			@Override
@@ -109,7 +109,7 @@ public class AddNewRefuellingWindow extends JFrame {
 						AddNewRefuelling(refuellingData);
 			}
 			
-			/*
+			/**
 			 * Metoda odpowiadaj¹ca za dodanie nowego tankowania do bazy danych
 			 */
 			private void AddNewRefuelling(Refuelling refuellingData) {
@@ -128,7 +128,7 @@ public class AddNewRefuellingWindow extends JFrame {
 			        stat.executeUpdate(SQL);
 			        stat.close();
 			        connection.close();
-			        /*
+			        /**
 			         *  Komunikat i wydrukowanie koñcowej formy polecenia SQL
 			         */
 			        System.out.println("Polecenie: \n" + SQL + "\n wykonane.");

@@ -9,10 +9,14 @@ import org.omg.CORBA.PUBLIC_MEMBER;
  
 public class JavaDB {
  
-	// Nazwa bazy
+	/**
+	 * Nazwa bazy
+	 */
     public final static String baseName = "VehicleManager";
     
-    //konstruktor bezparametrowy
+    /**
+     * konstruktor bezparametrowy
+     */
     public JavaDB() {  }
     
     /**
@@ -23,9 +27,13 @@ public class JavaDB {
     public static Connection connectToDB() {
         Connection connection = null;
         try {
-            // Wskazanie jaki rodzaj bazy danych bêdzie wykorzystany, tu sqlite
+            /**
+             * Wskazanie jaki rodzaj bazy danych bêdzie wykorzystany, tu sqlite
+             */
             Class.forName("org.sqlite.JDBC");           
-            // Po³¹czenie, wskazujemy rodzaj bazy i jej nazwê
+            /**
+             * Po³¹czenie, wskazujemy rodzaj bazy i jej nazwê
+             */
             connection = DriverManager.getConnection("jdbc:sqlite:"+baseName+".db");
             System.out.println("Po³¹czy³em siê z baz¹ "+baseName);
         } catch (Exception e) {
@@ -36,13 +44,15 @@ public class JavaDB {
     }
     /**
      * metoda usuwaj¹ca wiersz o danym Id z danej tabeli
-     * @param vehicleId
-     * @param table
+     * @param vehicleId - ID pojazdu
+     * @param table - tablica
      */
     public static Boolean delete(int vehicleId, String table) {
         Connection connection = null;
         Statement stat = null;
-        // Polecenie wyszukania
+        /**
+         * Polecenie wyszukania
+         */
         String searchSQL = "DELETE FROM "+table + " WHERE  Id =='" + vehicleId + "';";
         try {
             Class.forName("org.sqlite.JDBC");

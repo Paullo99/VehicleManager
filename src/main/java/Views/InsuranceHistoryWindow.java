@@ -61,7 +61,7 @@ public class InsuranceHistoryWindow extends JFrame {
 	}
 
 	
-	/*
+	/**
 	 * Metoda odpowiadaj¹ca za pobieranie danych o ubezpieczeniu z bazy danych i dodawanie ich w formie wierszy tabeli
 	 */
 public void addRowToTable() {
@@ -70,12 +70,16 @@ public void addRowToTable() {
 	try {
         Connection connection = JavaDB.connectToDB();
         Statement stat = connection.createStatement();
-        // Polecenie wyszukania
+        /**
+         *  Polecenie wyszukania
+         */
         String searchSQL = "SELECT vehicleId, type, policyNumber, expirationDate, course, price, dateOfEvent, description FROM Insurance;";
         ResultSet result = stat.executeQuery(searchSQL);
         System.out.println("wynik polecenia:\n" + searchSQL);
 
-        //pêtla odpowiedzialna za dodawanie wierszy do tabeli
+        /**
+         * pêtla odpowiedzialna za dodawanie wierszy do tabeli
+         */
         while (result.next()) {
             model.addRow(new Object[] {result.getInt("vehicleId"), result.getString("type"), result.getString("policyNumber"), result.getString("expirationDate"),
             		result.getString("course"), result.getString("price"),result.getString("dateOfEvent"), result.getString("description"),""
