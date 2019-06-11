@@ -1,4 +1,4 @@
-package Views;
+package Views.Tables;
 
 import java.awt.*;
 
@@ -6,30 +6,26 @@ import java.awt.event.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
-
 import javax.swing.*;
 
 import javax.swing.table.TableModel;
-import javax.swing.text.TableView.TableRow;
-
 import DB.JavaDB;
+import Views.VehiclePropertiesWindow;
 
 import javax.swing.table.DefaultTableModel;
 
 import javax.swing.table.*;
 
-class ButtonInJTable extends JFrame
+public class MainTable extends JFrame
 
 {
 	private JTable table;
 
 	private String[] columnNames = new String[5];
 
-
 	JButton button = new JButton();
 
-	public ButtonInJTable(JPanel topPanel, JScrollPane scrollPane)
+	public MainTable(JPanel topPanel, JScrollPane scrollPane)
 	{
 		columnNames = new String[] { "Id","Typ pojazdu", "Marka pojazdu", "Model", "Numer rejestracyjny", "Wlasciwosci" };
 		TableModel model = new DefaultTableModel(null, columnNames);
@@ -47,10 +43,12 @@ class ButtonInJTable extends JFrame
 		button.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent event){
+						
 						int row = table.getSelectedRow();
 						Object id = table.getValueAt(row, 0);
 						VehiclePropertiesWindow propertiesWindow = new VehiclePropertiesWindow((int) id);
 						propertiesWindow.show();
+						
 					}
 				}
 		);
@@ -112,8 +110,7 @@ class ButtonInJTable extends JFrame
 		}
 		
 		public Object getCellEditorValue() {
-			return new String(label);
+			return ""; // new String(label);
 		}
-
 	}
 }

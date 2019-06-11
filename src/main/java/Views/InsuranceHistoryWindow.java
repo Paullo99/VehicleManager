@@ -1,26 +1,17 @@
 package Views;
 
-import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import javax.swing.AbstractAction;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import DB.JavaDB;
-import Views.ButtonInJTable.ButtonEditor;
-import Views.ButtonInJTable.ButtonRenderer;
 
 public class InsuranceHistoryWindow extends JFrame {
 

@@ -19,7 +19,6 @@ import javax.swing.border.EmptyBorder;
 
 import Classes.Company;
 import Classes.PhysicalUser;
-import Classes.Profile;
 import DB.JavaDB;
 
 public class RegisterWindow extends JFrame {

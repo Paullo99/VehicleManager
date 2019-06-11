@@ -1,26 +1,22 @@
 package Views;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.Font;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
-
 import DB.JavaDB;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -214,8 +210,19 @@ public class VehiclePropertiesWindow extends JFrame {
 		JButton btnReminder = new JButton("Przypomnienie");
 		btnReminder.setBounds(260, 360, 103, 35);
 		contentPane.add(btnReminder);
-		
+		/**
+		 * przycisk uruchamiaj¹cy usuwanie pojazdu
+		 */
 		JButton buttonDeleteVehicle = new JButton("Usu\u0144 pojazd");
+		buttonDeleteVehicle.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(JavaDB.delete(vehicleId, "Vehicle")){
+					JOptionPane.showMessageDialog(null,"<html> Usuniêto pojazd </html>");
+					VehiclePropertiesWindow.this.dispose();
+				}
+			}
+		});
 		buttonDeleteVehicle.setBounds(373, 360, 103, 35);
 		contentPane.add(buttonDeleteVehicle);
 		
@@ -228,7 +235,7 @@ public class VehiclePropertiesWindow extends JFrame {
 		AddVehicleDataToWindow(vehicleId);
 	}
 	
-	/*
+	/**
 	 * Funkcja dodaj¹ca dane samochodu do textboxów w oknie
 	 */
 	public void AddVehicleDataToWindow(int vehicleId){

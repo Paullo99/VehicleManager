@@ -1,6 +1,5 @@
 package Views;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -26,7 +25,7 @@ public class ServicesWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ServicesWindow frame = new ServicesWindow();
+					ServicesWindow frame = new ServicesWindow(1);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,7 +37,7 @@ public class ServicesWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ServicesWindow() {
+	public ServicesWindow(int id) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 705, 468);
 		contentPane = new JPanel();
