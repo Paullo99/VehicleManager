@@ -28,7 +28,6 @@ public class AddNewReviewWindow extends JFrame {
 	private JTextField textFieldNoticesToReview;
 	private JTextField textFieldCourseDuringReview;
 	private JTextField textFieldPriceOfReview;
-	private JTextField textFieldVehicleId;
 
 	/**
 	 * Launch the application.
@@ -37,7 +36,7 @@ public class AddNewReviewWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddNewReviewWindow frame = new AddNewReviewWindow();
+					AddNewReviewWindow frame = new AddNewReviewWindow(1);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +48,7 @@ public class AddNewReviewWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddNewReviewWindow() {
+	public AddNewReviewWindow(int vehicleId) {
 		setTitle("Dodaj nowy przegl¹d");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 695, 433);
@@ -91,11 +90,6 @@ public class AddNewReviewWindow extends JFrame {
 		textFieldPriceOfReview.setBounds(122, 147, 86, 20);
 		contentPane.add(textFieldPriceOfReview);
 		
-		textFieldVehicleId = new JTextField();
-		textFieldVehicleId.setBounds(122, 178, 86, 20);
-		contentPane.add(textFieldVehicleId);
-		textFieldVehicleId.setColumns(10);
-		
 		JLabel lblUwagi_1 = new JLabel("Uwagi:");
 		lblUwagi_1.setBounds(31, 88, 46, 14);
 		contentPane.add(lblUwagi_1);
@@ -107,10 +101,6 @@ public class AddNewReviewWindow extends JFrame {
 		JLabel lblCena = new JLabel("Koszt:");
 		lblCena.setBounds(31, 150, 46, 14);
 		contentPane.add(lblCena);
-		
-		JLabel lblVehicleid = new JLabel("VehicleId");
-		lblVehicleid.setBounds(31, 181, 46, 14);
-		contentPane.add(lblVehicleid);
 		
 		JLabel lblDataWyganiciaPrzegldu = new JLabel("Data wyga\u015Bni\u0119cia przegl\u0105du:");
 		lblDataWyganiciaPrzegldu.setHorizontalAlignment(SwingConstants.CENTER);
@@ -146,7 +136,7 @@ public class AddNewReviewWindow extends JFrame {
 				 * */
 				Review reviewData = new Review(rdbtnPassed.isSelected(), calendarExpirationDateOfReview.getDate(), 
 						textFieldNoticesToReview.getText(), textFieldCourseDuringReview.getText(), textFieldPriceOfReview.getText(), 
-						calendarDateOfReview.getDate(), Integer.parseInt(textFieldVehicleId.getText()));
+						calendarDateOfReview.getDate(), vehicleId);
 				
 						AddNewReview(reviewData);
 			}
@@ -165,7 +155,7 @@ public class AddNewReviewWindow extends JFrame {
 				                + "'" + reviewData.getCourse() + "',"
 				                + "'" + reviewData.getPrice() + "',"
 				                + "'" + reviewData.getDateOfEvent() + "',"
-				                + "'" + reviewData.getVehicleId() + "'"
+				                + "'" + vehicleId + "'"
 				                + ");";
 				        System.out.println(SQL);
 				        stat.executeUpdate(SQL);

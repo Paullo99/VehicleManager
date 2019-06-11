@@ -29,7 +29,7 @@ public class ServiceHistoryWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ServiceHistoryWindow frame = new ServiceHistoryWindow();
+					ServiceHistoryWindow frame = new ServiceHistoryWindow(1);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +41,7 @@ public class ServiceHistoryWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ServiceHistoryWindow() {
+	public ServiceHistoryWindow(int vehicleId) {
 		setTitle("Historia serwisów");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1296, 611);
@@ -60,7 +60,7 @@ public class ServiceHistoryWindow extends JFrame {
 		table.setModel(model);
 		scrollPane.setViewportView(table);
 		
-		addRowToTable();
+		addRowToTable(vehicleId);
 		
 	}
 
@@ -68,7 +68,7 @@ public class ServiceHistoryWindow extends JFrame {
 	/**
 	 * Metoda odpowiadaj¹ca za pobieranie danych o serwisie z bazy danych i dodawanie ich w formie wierszy tabeli
 	 */
-public void addRowToTable() {
+public void addRowToTable(int vehicleId) {
 	
 	DefaultTableModel model = (DefaultTableModel) table.getModel();
 	try {
@@ -77,7 +77,8 @@ public void addRowToTable() {
         /**
          *  Polecenie wyszukania
          */
-        String searchSQL = "SELECT vehicleId, name, description, type, course, price, dateOfEvent FROM Service;";
+        String searchSQL = "SELECT vehicleId, name, description, type, course, price, dateOfEvent FROM Service "
+        		+ "WHERE vehicleId == " + vehicleId+ ";";
         ResultSet result = stat.executeQuery(searchSQL);
         System.out.println("wynik polecenia:\n" + searchSQL);
         

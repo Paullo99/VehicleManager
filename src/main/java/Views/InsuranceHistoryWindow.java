@@ -25,7 +25,7 @@ public class InsuranceHistoryWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					InsuranceHistoryWindow frame = new InsuranceHistoryWindow();
+					InsuranceHistoryWindow frame = new InsuranceHistoryWindow(1);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +37,7 @@ public class InsuranceHistoryWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public InsuranceHistoryWindow() {
+	public InsuranceHistoryWindow(int vehicleId) {
 		setTitle("Historia ubezpieczeñ");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1296, 611);
@@ -56,7 +56,7 @@ public class InsuranceHistoryWindow extends JFrame {
 		table.setModel(model);
 		scrollPane.setViewportView(table);
 		
-		addRowToTable();
+		addRowToTable(vehicleId);
 		
 	}
 
@@ -64,7 +64,7 @@ public class InsuranceHistoryWindow extends JFrame {
 	/**
 	 * Metoda odpowiadaj¹ca za pobieranie danych o ubezpieczeniu z bazy danych i dodawanie ich w formie wierszy tabeli
 	 */
-public void addRowToTable() {
+public void addRowToTable(int vehicleId) {
 	
 	DefaultTableModel model = (DefaultTableModel) table.getModel();
 	try {
@@ -73,7 +73,8 @@ public void addRowToTable() {
         /**
          *  Polecenie wyszukania
          */
-        String searchSQL = "SELECT vehicleId, type, policyNumber, expirationDate, course, price, dateOfEvent, description FROM Insurance;";
+        String searchSQL = "SELECT vehicleId, type, policyNumber, expirationDate, course, price, dateOfEvent, description FROM Insurance "
+        		+ "WHERE vehicleId ==" + vehicleId+ ";";
         ResultSet result = stat.executeQuery(searchSQL);
         System.out.println("wynik polecenia:\n" + searchSQL);
 

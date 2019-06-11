@@ -26,7 +26,6 @@ public class AddNewRefuellingWindow extends JFrame {
 	private JTextField textFieldCours;
 	private JTextField textFieldPriceOfFuel;
 	private JTextField textFieldAmountOfFuel;
-	private JTextField textFieldVehicleId;
 
 	/**
 	 * Launch the application.
@@ -105,7 +104,7 @@ public class AddNewRefuellingWindow extends JFrame {
 			 */
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Refuelling refuellingData = new Refuelling(textFieldCours.getText(), textFieldPriceOfFuel.getText(), textFieldAmountOfFuel.getText(), CalendarOfRefuelling.getDate(), Integer.parseInt(textFieldVehicleId.getText()));
+				Refuelling refuellingData = new Refuelling(textFieldCours.getText(), textFieldPriceOfFuel.getText(), textFieldAmountOfFuel.getText(), CalendarOfRefuelling.getDate(), vehicleId);
 						AddNewRefuelling(refuellingData);
 			}
 			
@@ -141,12 +140,6 @@ public class AddNewRefuellingWindow extends JFrame {
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnNewButton.setBounds(293, 226, 201, 62);
 		contentPane.add(btnNewButton);
-		
-		textFieldVehicleId = new JTextField();
-		textFieldVehicleId.setText("Id samochodu");
-		textFieldVehicleId.setBounds(342, 39, 86, 20);
-		contentPane.add(textFieldVehicleId);
-		textFieldVehicleId.setColumns(10);
 		
 		JLabel lblL = new JLabel("[ L ]");
 		lblL.setBounds(229, 104, 46, 14);

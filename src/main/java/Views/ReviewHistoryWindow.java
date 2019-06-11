@@ -28,7 +28,7 @@ public class ReviewHistoryWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ReviewHistoryWindow frame = new ReviewHistoryWindow();
+					ReviewHistoryWindow frame = new ReviewHistoryWindow(1);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +40,7 @@ public class ReviewHistoryWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ReviewHistoryWindow() {
+	public ReviewHistoryWindow(int vehicleId) {
 		setTitle("Historia przegl¹dów");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1296, 611);
@@ -59,7 +59,7 @@ public class ReviewHistoryWindow extends JFrame {
 		table.setModel(model);
 		scrollPane.setViewportView(table);
 		
-		addRowToTable();
+		addRowToTable(vehicleId);
 		
 	}
 
@@ -67,7 +67,7 @@ public class ReviewHistoryWindow extends JFrame {
 	/**
 	 * Metoda odpowiadaj¹ca za pobieranie danych o przegl¹dach z bazy danych i dodawanie ich w formie wierszy tabeli
 	 */
-public void addRowToTable() {
+public void addRowToTable(int vehicleId) {
 	
 	DefaultTableModel model = (DefaultTableModel) table.getModel();
 	try {
@@ -76,7 +76,9 @@ public void addRowToTable() {
         /**
          *  Polecenie wyszukania
          */
-        String searchSQL = "SELECT vehicleId, isPassed, notices, expirationDate, course, price, dateOfEvent FROM Review;";
+        String searchSQL = "SELECT vehicleId, isPassed, notices, expirationDate, course, price, dateOfEvent FROM Review "
+        		+ "WHERE vehicleId ==" + vehicleId + ";";
+   
         ResultSet result = stat.executeQuery(searchSQL);
         System.out.println("wynik polecenia:\n" + searchSQL);
 

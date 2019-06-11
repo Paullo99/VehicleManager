@@ -32,7 +32,6 @@ public class AddNewInsuranceWindow extends JFrame {
 	private JTextField textFieldDescriptionOfInsurance;
 	private JTextField textFieldCourseDuringInsurance;
 	private JTextField textFieldPriceOfInsurance;
-	private JTextField textFieldVehicleId;
 
 	/**
 	 * Launch the application.
@@ -41,7 +40,7 @@ public class AddNewInsuranceWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddNewInsuranceWindow frame = new AddNewInsuranceWindow();
+					AddNewInsuranceWindow frame = new AddNewInsuranceWindow(1);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,7 +52,7 @@ public class AddNewInsuranceWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddNewInsuranceWindow() {
+	public AddNewInsuranceWindow(int vehicleId) {
 		setTitle("Dodaj nowe ubezpieczenie");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 680, 456);
@@ -87,11 +86,6 @@ public class AddNewInsuranceWindow extends JFrame {
 		textFieldPriceOfInsurance.setBounds(112, 160, 86, 20);
 		contentPane.add(textFieldPriceOfInsurance);
 		
-		textFieldVehicleId = new JTextField();
-		textFieldVehicleId.setColumns(10);
-		textFieldVehicleId.setBounds(112, 191, 86, 20);
-		contentPane.add(textFieldVehicleId);
-		
 		JLabel lblNewLabel = new JLabel("Rodzaj:");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel.setBounds(10, 39, 77, 14);
@@ -116,11 +110,6 @@ public class AddNewInsuranceWindow extends JFrame {
 		lblKoszt.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblKoszt.setBounds(10, 163, 77, 14);
 		contentPane.add(lblKoszt);
-		
-		JLabel lblVehicleid = new JLabel("VehicleId");
-		lblVehicleid.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblVehicleid.setBounds(10, 194, 77, 14);
-		contentPane.add(lblVehicleid);
 		
 		JCalendar calendarStartOfInsurance = new JCalendar();
 		calendarStartOfInsurance.setBounds(245, 55, 152, 153);
@@ -157,7 +146,7 @@ public class AddNewInsuranceWindow extends JFrame {
 				Insurance insuranceData = new Insurance(textFieldTypeOfInsurance.getText(),textFieldPolicyNumber.getText(),
 						calendarExpirationDateOfInsurance.getDate(), textFieldDescriptionOfInsurance.getText(),
 						textFieldCourseDuringInsurance.getText(), textFieldPriceOfInsurance.getText(),
-						calendarStartOfInsurance.getDate(), Integer.parseInt(textFieldVehicleId.getText()));
+						calendarStartOfInsurance.getDate(), vehicleId);
 			
 				AddNewInsurance(insuranceData);
 			}
@@ -177,7 +166,7 @@ public class AddNewInsuranceWindow extends JFrame {
 				                + "'" + insuranceData.getCourse() + "',"
 				                + "'" + insuranceData.getPrice() + "',"
 				                + "'" + insuranceData.getDateOfEvent() + "',"
-				                + "'" + insuranceData.getVehicleId() + "'"
+				                + "'" + vehicleId + "'"
 				                + ");";
 				        System.out.println(SQL);
 				        stat.executeUpdate(SQL);

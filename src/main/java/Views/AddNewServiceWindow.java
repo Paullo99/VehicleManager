@@ -28,7 +28,6 @@ public class AddNewServiceWindow extends JFrame {
 	private JTextField textFieldTypeOfService;
 	private JTextField textFieldCourseOfService;
 	private JTextField textFieldPriceOfService;
-	private JTextField textFieldVegicleIdOfService;
 
 	/**
 	 * Launch the application.
@@ -37,7 +36,7 @@ public class AddNewServiceWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddNewServiceWindow frame = new AddNewServiceWindow();
+					AddNewServiceWindow frame = new AddNewServiceWindow(1);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +48,7 @@ public class AddNewServiceWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddNewServiceWindow() {
+	public AddNewServiceWindow(int vehicleId) {
 		setTitle("Dodaj nowy serwis");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 488, 378);
@@ -108,16 +107,6 @@ public class AddNewServiceWindow extends JFrame {
 		textFieldPriceOfService.setBounds(87, 153, 86, 20);
 		contentPane.add(textFieldPriceOfService);
 		
-		JLabel lblVehicleid = new JLabel("VehicleId:");
-		lblVehicleid.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblVehicleid.setBounds(10, 184, 67, 14);
-		contentPane.add(lblVehicleid);
-		
-		textFieldVegicleIdOfService = new JTextField();
-		textFieldVegicleIdOfService.setColumns(10);
-		textFieldVegicleIdOfService.setBounds(87, 181, 86, 20);
-		contentPane.add(textFieldVegicleIdOfService);
-		
 		JLabel lblData = new JLabel("Data us\u0142ugi:");
 		lblData.setBounds(293, 19, 67, 14);
 		contentPane.add(lblData);
@@ -136,7 +125,7 @@ public class AddNewServiceWindow extends JFrame {
 				/**
 				 * Tworzenie nowego obiektu serwisu
 				 */
-				Service serviceData = new Service(textFieldNameOfService.getText(), textFieldDescriptionOfService.getText(), textFieldTypeOfService.getText(),textFieldCourseOfService.getText(), textFieldPriceOfService.getText(), calendar.getDate(),Integer.parseInt(textFieldVegicleIdOfService.getText()));
+				Service serviceData = new Service(textFieldNameOfService.getText(), textFieldDescriptionOfService.getText(), textFieldTypeOfService.getText(),textFieldCourseOfService.getText(), textFieldPriceOfService.getText(), calendar.getDate(),vehicleId);
 				AddNewService(serviceData);
 			}
 			/**
@@ -154,7 +143,7 @@ public class AddNewServiceWindow extends JFrame {
 				                + "'" + serviceData.getCourse() + "',"
 				                + "'" + serviceData.getPrice() + "',"
 				                + "'" + serviceData.getDateOfEvent() + "',"
-				                + "'" + serviceData.getVehicleId() + "'"
+				                + "'" + vehicleId + "'"
 				                + ");";
 				        System.out.println(SQL);
 				        stat.executeUpdate(SQL);

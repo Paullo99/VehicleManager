@@ -40,7 +40,7 @@ public class ServicesWindow extends JFrame {
 	public ServicesWindow(int id) {
 		setTitle("Serwisy");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 705, 468);
+		setBounds(100, 100, 919, 469);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -60,7 +60,8 @@ public class ServicesWindow extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				
-				AddNewServiceWindow.main(null);
+				AddNewServiceWindow addNewServiceWindow = new AddNewServiceWindow(id);
+				addNewServiceWindow.show();
 			}
 		});
 		btnAddService.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -74,7 +75,8 @@ public class ServicesWindow extends JFrame {
 		btnAddReview.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				AddNewReviewWindow.main(null);
+				AddNewReviewWindow addNewReviewWindow = new AddNewReviewWindow(id);
+				addNewReviewWindow.show();
 			}
 		});
 		btnAddReview.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -88,7 +90,8 @@ public class ServicesWindow extends JFrame {
 		btnAddInsurance.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				AddNewInsuranceWindow.main(null);
+				AddNewInsuranceWindow addNewInsuranceWindow = new AddNewInsuranceWindow(id);
+				addNewInsuranceWindow.show();
 			}
 		});
 		btnAddInsurance.addActionListener(new ActionListener() {
@@ -120,7 +123,8 @@ public class ServicesWindow extends JFrame {
 		btnHistoryOfServices.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				ServiceHistoryWindow.main(null);
+				ServiceHistoryWindow serviceHistoryWindow = new ServiceHistoryWindow(id);
+				serviceHistoryWindow.show();
 			}
 		});
 		btnHistoryOfServices.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -134,7 +138,8 @@ public class ServicesWindow extends JFrame {
 		btnHistoryOfReviews.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				ReviewHistoryWindow.main(null);
+				ReviewHistoryWindow reviewHistoryWindow = new ReviewHistoryWindow(id);
+				reviewHistoryWindow.show();
 			}
 		});
 		btnHistoryOfReviews.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -148,11 +153,27 @@ public class ServicesWindow extends JFrame {
 		btnHistoryOfInsurances.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				InsuranceHistoryWindow.main(null);
+				InsuranceHistoryWindow insuranceHistoryWindow = new InsuranceHistoryWindow(id);
+				insuranceHistoryWindow.show();
 			}
 		});
 		btnHistoryOfInsurances.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnHistoryOfInsurances.setBounds(487, 217, 167, 77);
 		contentPane.add(btnHistoryOfInsurances);
+		
+		/**
+		 * Przycisk otwieraj¹cy nowe okno - historia tankowañ
+		 */
+		JButton buttonRefuellingHistory = new JButton("<html> <center> Historia <br> tankowa\u0144 </html>");
+		buttonRefuellingHistory.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				RefuellingHistoryWindow refuellingHistoryWindow = new RefuellingHistoryWindow(id);
+				refuellingHistoryWindow.show();
+			}
+		});
+		buttonRefuellingHistory.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		buttonRefuellingHistory.setBounds(707, 151, 167, 77);
+		contentPane.add(buttonRefuellingHistory);
 	}
 }
