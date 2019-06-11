@@ -1,20 +1,25 @@
 package Views.Tables;
 
-import java.awt.*;
-
-import java.awt.event.*;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import javax.swing.*;
 
+import javax.swing.DefaultCellEditor;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
+
 import DB.JavaDB;
 import Views.VehiclePropertiesWindow;
-
-import javax.swing.table.DefaultTableModel;
-
-import javax.swing.table.*;
 
 public class MainTable extends JFrame
 

@@ -1,26 +1,26 @@
 package Views;
 
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JRadioButton;
-import com.toedter.calendar.JCalendar;
-
-import Classes.Review;
-import DB.JavaDB;
-
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.Statement;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import com.toedter.calendar.JCalendar;
+
+import Classes.Review;
+import DB.JavaDB;
 
 public class AddNewReviewWindow extends JFrame {
 

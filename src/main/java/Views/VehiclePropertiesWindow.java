@@ -1,25 +1,33 @@
 package Views;
 
 import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import DB.JavaDB;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.WindowConstants;
-import javax.swing.JButton;
-import javax.swing.JTextArea;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import DB.JavaDB;
+import java.awt.Canvas;
 
 public class VehiclePropertiesWindow extends JFrame {
 
@@ -58,7 +66,7 @@ public class VehiclePropertiesWindow extends JFrame {
 	public VehiclePropertiesWindow(int vehicleId) {
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 720, 506);
+		setBounds(100, 100, 1152, 781);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -66,121 +74,117 @@ public class VehiclePropertiesWindow extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("Typ Pojazdu:");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel.setBounds(45, 61, 68, 14);
+		lblNewLabel.setBounds(20, 61, 93, 14);
 		contentPane.add(lblNewLabel);
 		
 		textFieldVehicleType = new JTextField();
 		textFieldVehicleType.setEditable(false);
-		textFieldVehicleType.setBounds(123, 58, 86, 20);
+		textFieldVehicleType.setBounds(134, 61, 154, 20);
 		contentPane.add(textFieldVehicleType);
 		textFieldVehicleType.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Marka:");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_1.setBounds(67, 86, 46, 14);
+		lblNewLabel_1.setBounds(20, 86, 93, 14);
 		contentPane.add(lblNewLabel_1);
 		
 		textFieldVehicleMark = new JTextField();
 		textFieldVehicleMark.setEditable(false);
-		textFieldVehicleMark.setBounds(123, 83, 86, 20);
+		textFieldVehicleMark.setBounds(134, 86, 154, 20);
 		contentPane.add(textFieldVehicleMark);
 		textFieldVehicleMark.setColumns(10);
 		
 		textFieldVehicleModel = new JTextField();
 		textFieldVehicleModel.setEditable(false);
 		textFieldVehicleModel.setColumns(10);
-		textFieldVehicleModel.setBounds(123, 108, 86, 20);
+		textFieldVehicleModel.setBounds(134, 111, 154, 20);
 		contentPane.add(textFieldVehicleModel);
 		
 		JLabel lblNewLabel_2 = new JLabel("Model:");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_2.setBounds(81, 111, 32, 14);
+		lblNewLabel_2.setBounds(30, 111, 83, 14);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Przebieg:");
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_3.setBounds(67, 136, 46, 14);
+		lblNewLabel_3.setBounds(20, 136, 93, 14);
 		contentPane.add(lblNewLabel_3);
 		
 		textFieldVehicleCourse = new JTextField();
 		textFieldVehicleCourse.setEditable(false);
-		textFieldVehicleCourse.setBounds(123, 133, 86, 20);
+		textFieldVehicleCourse.setBounds(134, 136, 154, 20);
 		contentPane.add(textFieldVehicleCourse);
 		textFieldVehicleCourse.setColumns(10);
 		
 		JLabel lblNewLabel_4 = new JLabel("Rok Produkcji:");
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_4.setBounds(45, 161, 68, 14);
+		lblNewLabel_4.setBounds(20, 161, 93, 14);
 		contentPane.add(lblNewLabel_4);
 		
 		textFieldYearOfProduction = new JTextField();
 		textFieldYearOfProduction.setEditable(false);
-		textFieldYearOfProduction.setBounds(123, 158, 86, 20);
+		textFieldYearOfProduction.setBounds(134, 161, 154, 20);
 		contentPane.add(textFieldYearOfProduction);
 		textFieldYearOfProduction.setColumns(10);
 		
 		JLabel lblNewLabel_5 = new JLabel("Pojemno\u015B\u0107 silnika:");
 		lblNewLabel_5.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_5.setBounds(21, 186, 92, 14);
+		lblNewLabel_5.setBounds(20, 186, 93, 14);
 		contentPane.add(lblNewLabel_5);
 		
 		textField = new JTextField();
 		textField.setEditable(false);
-		textField.setBounds(123, 189, 68, 0);
+		textField.setBounds(134, 192, 154, 0);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		textFieldEngineCapacity = new JTextField();
 		textFieldEngineCapacity.setEditable(false);
-		textFieldEngineCapacity.setBounds(123, 183, 86, 20);
+		textFieldEngineCapacity.setBounds(134, 186, 154, 20);
 		contentPane.add(textFieldEngineCapacity);
 		textFieldEngineCapacity.setColumns(10);
 		
 		JLabel lblNewLabel_6 = new JLabel("Moc silnika:");
 		lblNewLabel_6.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_6.setBounds(52, 211, 61, 14);
+		lblNewLabel_6.setBounds(20, 211, 93, 14);
 		contentPane.add(lblNewLabel_6);
 		
 		textFieldPower = new JTextField();
 		textFieldPower.setEditable(false);
-		textFieldPower.setBounds(123, 208, 86, 20);
+		textFieldPower.setBounds(134, 211, 154, 20);
 		contentPane.add(textFieldPower);
 		textFieldPower.setColumns(10);
 		
 		JLabel lblRodzajPaliwa = new JLabel("Rodzaj paliwa:");
 		lblRodzajPaliwa.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblRodzajPaliwa.setBounds(31, 236, 82, 14);
+		lblRodzajPaliwa.setBounds(20, 236, 93, 14);
 		contentPane.add(lblRodzajPaliwa);
 		
 		textFieldFuelType = new JTextField();
 		textFieldFuelType.setEditable(false);
-		textFieldFuelType.setBounds(123, 233, 86, 20);
+		textFieldFuelType.setBounds(134, 236, 154, 20);
 		contentPane.add(textFieldFuelType);
 		textFieldFuelType.setColumns(10);
 		
 		JLabel lblNewLabel_7 = new JLabel("\u0141adowno\u015B\u0107:");
 		lblNewLabel_7.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_7.setBounds(52, 261, 61, 14);
+		lblNewLabel_7.setBounds(20, 261, 93, 14);
 		contentPane.add(lblNewLabel_7);
 		
 		textFieldLoad = new JTextField();
 		textFieldLoad.setEditable(false);
-		textFieldLoad.setBounds(123, 258, 86, 20);
+		textFieldLoad.setBounds(134, 261, 154, 20);
 		contentPane.add(textFieldLoad);
 		textFieldLoad.setColumns(10);
 		
-		JLabel lblNewLabel_8 = new JLabel("Tu b\u0119dzie zdj\u0119cie:");
-		lblNewLabel_8.setBounds(260, 35, 126, 14);
-		contentPane.add(lblNewLabel_8);
-		
 		JLabel lblNumerRejestracyjny = new JLabel("Numer rejestracyjny:");
 		lblNumerRejestracyjny.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNumerRejestracyjny.setBounds(10, 286, 103, 14);
+		lblNumerRejestracyjny.setBounds(20, 286, 93, 14);
 		contentPane.add(lblNumerRejestracyjny);
 		
 		textFieldRegistrationNumber = new JTextField();
 		textFieldRegistrationNumber.setEditable(false);
-		textFieldRegistrationNumber.setBounds(123, 283, 86, 20);
+		textFieldRegistrationNumber.setBounds(134, 286, 154, 20);
 		contentPane.add(textFieldRegistrationNumber);
 		textFieldRegistrationNumber.setColumns(10);
 		
@@ -193,7 +197,7 @@ public class VehiclePropertiesWindow extends JFrame {
 				noticeWindow.show();
 			}
 		});
-		btnAddNotice.setBounds(34, 360, 103, 35);
+		btnAddNotice.setBounds(21, 655, 103, 35);
 		contentPane.add(btnAddNotice);
 		
 		JButton btnAddFueling = new JButton("<html> <center> Dodaj <br> tankowanie </html>");
@@ -204,11 +208,11 @@ public class VehiclePropertiesWindow extends JFrame {
 				refuellingWindow.show();
 			}
 		});
-		btnAddFueling.setBounds(147, 360, 103, 35);
+		btnAddFueling.setBounds(134, 655, 103, 35);
 		contentPane.add(btnAddFueling);
 		
 		JButton btnReminder = new JButton("Przypomnienie");
-		btnReminder.setBounds(260, 360, 103, 35);
+		btnReminder.setBounds(247, 655, 103, 35);
 		contentPane.add(btnReminder);
 		/**
 		 * przycisk uruchamiaj¹cy usuwanie pojazdu
@@ -223,28 +227,32 @@ public class VehiclePropertiesWindow extends JFrame {
 				}
 			}
 		});
-		buttonDeleteVehicle.setBounds(373, 360, 103, 35);
+		buttonDeleteVehicle.setBounds(360, 655, 103, 35);
 		contentPane.add(buttonDeleteVehicle);
 		
 		JTextArea txtrNotices = new JTextArea();
 		txtrNotices.setEditable(false);
 		txtrNotices.setText("Uwagi:");
-		txtrNotices.setBounds(480, 61, 186, 242);
+		txtrNotices.setBounds(21, 322, 267, 307);
 		contentPane.add(txtrNotices);
+		JLabel imgLabel = new JLabel("");
+		imgLabel.setHorizontalAlignment(SwingConstants.CENTER);
+	    imgLabel.setBounds(298, 21, 828, 638);
 		//wywo³anie metody dodaj¹cej wartoœci
-		AddVehicleDataToWindow(vehicleId);
+		AddVehicleDataToWindow(vehicleId, imgLabel);
+	    contentPane.add(imgLabel);
 	}
 	
 	/**
 	 * Funkcja dodaj¹ca dane samochodu do textboxów w oknie
 	 */
-	public void AddVehicleDataToWindow(int vehicleId){
+	public void AddVehicleDataToWindow(int vehicleId, JLabel imgLabel){
+		String imgName = "";
 		try {
             Connection connection = JavaDB.connectToDB();
             Statement stat = connection.createStatement();
             // Polecenie wyszukania
             String searchSQL = "SELECT * FROM Vehicle Where Id ='"+vehicleId+"';";
-
             ResultSet result = stat.executeQuery(searchSQL);
             System.out.println("wynik polecenia:\n" + searchSQL);
             
@@ -260,7 +268,10 @@ public class VehiclePropertiesWindow extends JFrame {
             	textFieldFuelType.setText(result.getString("fuellType"));
             	textFieldLoad.setText(result.getString("load"));
             	textFieldRegistrationNumber.setText(result.getString("registrationNumber"));
+            	imgName=result.getString("imageUrl");
+            	
              }
+            imgLabel.setIcon(new ImageIcon("C:\\Users\\Kewin\\Studia\\projekt PO\\VehicleManager\\VehicleManager\\src\\main\\images\\"+imgName.trim()));
             result.close();
             stat.close();
             connection.close();

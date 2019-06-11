@@ -1,5 +1,4 @@
 package Classes;
-import java.sql.Date;
 
 public class Refuelling extends EventProperties {
 
