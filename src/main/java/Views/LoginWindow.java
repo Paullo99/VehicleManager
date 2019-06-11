@@ -44,14 +44,14 @@ public class LoginWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public LoginWindow() {
-		setTitle("VehicleManager");
+		setTitle("VehicleManager - Logowanie");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		/*
+		/**
 		 * otwiera okno rejestracji - RegisterWindow.java
 		 */
 		JButton btnRegister = new JButton("Zarejestruj si\u0119");
@@ -66,7 +66,7 @@ public class LoginWindow extends JFrame {
 		});
 		btnRegister.setBounds(170, 177, 101, 23);
 		contentPane.add(btnRegister);
-		/*
+		/**
 		 * Przycisk odpowiadaj¹cy za ³¹czenie z Baz¹ danych i sprawdzanie poprawnoœci danych logowania
 		 */
 		JButton btnLogin = new JButton("Zaloguj si\u0119");
@@ -74,7 +74,9 @@ public class LoginWindow extends JFrame {
 			@SuppressWarnings("deprecation")
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//sprawdzenie danych logowania
+				/**
+				 * sprawdzenie danych logowania
+				 */
 				boolean check = loginDatacheck(textFieldLogin.getText(), textFieldPassword.getText());
 				if(check==true) {
 					MainWindow mainWindow = new MainWindow();
@@ -105,13 +107,17 @@ public class LoginWindow extends JFrame {
 	@SuppressWarnings("unused")
 	private boolean loginDatacheck(String login, String password) {
 		boolean isCorrect=false;
-		//³¹czenie z DB
+		/**
+		 * ³¹czenie z DB
+		 */
 		JavaDB database = new JavaDB();
 		Connection connection = JavaDB.connectToDB();
 		Statement stat = null;
         try {
             stat = connection.createStatement(); 
-            // Polecenie wyszukania
+            /**
+             *  Polecenie wyszukania
+             */
             String searchSQL = "SELECT * FROM User WHERE login == '"+login+"' AND password == '"+password+"';";
             ResultSet result = stat.executeQuery(searchSQL);
             if(result.getString("Id") != null) {

@@ -33,6 +33,7 @@ public class RefuellingHistoryWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public RefuellingHistoryWindow() {
+		setTitle("Historia tankowañ");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 601, 416);
 		contentPane = new JPanel();

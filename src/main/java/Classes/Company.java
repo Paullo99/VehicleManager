@@ -5,7 +5,9 @@ public class Company extends Profile {
 	private String name;
 	private String nip;
 	
-	//Konstruktor
+	/**
+	 * Konstruktor obiektu Company
+	 */
 	public Company(String name, String nip, String phone, String email, String country,
 			String city, String street,	int numberOfBuilding, String postCode, String login, String password) {
 		this.name = name;

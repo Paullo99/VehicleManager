@@ -54,6 +54,7 @@ public class AddNewInsuranceWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public AddNewInsuranceWindow() {
+		setTitle("Dodaj nowe ubezpieczenie");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 680, 456);
 		contentPane = new JPanel();
@@ -150,7 +151,7 @@ public class AddNewInsuranceWindow extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				
-				/*
+				/**
 				 * Tworzenie nowego obiektu Ubezpieczenie
 				 */
 				Insurance insuranceData = new Insurance(textFieldTypeOfInsurance.getText(),textFieldPolicyNumber.getText(),
@@ -160,6 +161,9 @@ public class AddNewInsuranceWindow extends JFrame {
 			
 				AddNewInsurance(insuranceData);
 			}
+			/**
+			 * Dodawanie nowego ubezpieczenia do bazy danych
+			 */
 				private void AddNewInsurance(Insurance insuranceData) {
 					try {
 						Connection connection = JavaDB.connectToDB();
@@ -179,7 +183,7 @@ public class AddNewInsuranceWindow extends JFrame {
 				        stat.executeUpdate(SQL);
 				        stat.close();
 				        connection.close();
-				        /*
+				        /**
 				         *  Komunikat i wydrukowanie koñcowej formy polecenia SQL
 				         */
 				        System.out.println("Polecenie: \n" + SQL + "\n wykonane.");

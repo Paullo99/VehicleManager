@@ -36,6 +36,7 @@ public class AddNoticeWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public AddNoticeWindow() {
+		setTitle("Dodaj uwagê");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -48,6 +49,9 @@ public class AddNoticeWindow extends JFrame {
 		contentPane.add(textFieldAddNotice);
 		textFieldAddNotice.setColumns(10);
 		
+		/**
+		 * Przycisk odpowiedzialny za dodanie notatki 
+		 */
 		JButton btnConfirmNotice = new JButton("Dodaj");
 		btnConfirmNotice.addMouseListener(new MouseAdapter() {
 			@Override

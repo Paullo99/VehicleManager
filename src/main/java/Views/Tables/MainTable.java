@@ -42,7 +42,7 @@ public class MainTable extends JFrame
 
 		scrollPane.setViewportView(table);
 		button.setText("Otwórz");
-		/*
+		/**
 		 * Przycisk wywo³uj¹cy otwarcie okna z w³aœciwoœciami pojazdu
 		 */
 		button.addActionListener(
@@ -57,11 +57,13 @@ public class MainTable extends JFrame
 					}
 				}
 		);
-		//Wywo³anie funkcji pobieraj¹cej dane z bazy danych do tabeli
+		/**
+		 * Wywo³anie funkcji pobieraj¹cej dane z bazy danych do tabeli
+		 */
 		addRowToTable();
 	}
 	
-	/*
+	/**
 	 * Metoda odpowiadaj¹ca za pobieranie pojazdów z bazy danych i dodawanie ich w formie wierszy tabeli
 	 */
 	public void addRowToTable() {
@@ -70,7 +72,9 @@ public class MainTable extends JFrame
 		try {
             Connection connection = JavaDB.connectToDB();
             Statement stat = connection.createStatement();
-            // Polecenie wyszukania
+            /**
+             *  Polecenie wyszukania
+             */
             String searchSQL = "SELECT Id, vehicleType, mark, model, registrationNumber FROM Vehicle;";
             ResultSet result = stat.executeQuery(searchSQL);
             System.out.println("wynik polecenia:\n" + searchSQL);
@@ -87,7 +91,7 @@ public class MainTable extends JFrame
             System.out.println("Nie mogê wyszukaæ danych " + e.getMessage());
         }
 	}
-	/*
+	/**
 	 * Klasa odpowiadaj¹ca za generowanie przycisku
 	 */
 	class ButtonRenderer extends JButton implements TableCellRenderer {
@@ -100,7 +104,7 @@ public class MainTable extends JFrame
 			return this;
 		}
 	}
-	/*
+	/**
 	 * Klasa odpowiadaj¹ca za w³aœciwoœci przycisku
 	 */
 	class ButtonEditor extends DefaultCellEditor {

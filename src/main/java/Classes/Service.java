@@ -6,6 +6,9 @@ public class Service extends EventProperties {
 	private String description; 
 	private String type;
 	
+	/**
+	 * Konstruktor obiektu Service
+	 */
 	public Service(String name, String description, String type,
 			String course, String price, java.util.Date dateOfEvent, int vehicleId) {
 			this.name = name;

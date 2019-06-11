@@ -64,7 +64,7 @@ public class VehiclePropertiesWindow extends JFrame {
 	 * Create the frame, argument is id
 	 */
 	public VehiclePropertiesWindow(int vehicleId) {
-		
+		setTitle("W³aœciwoœci pojazdu");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1152, 781);
 		contentPane = new JPanel();
@@ -188,6 +188,9 @@ public class VehiclePropertiesWindow extends JFrame {
 		contentPane.add(textFieldRegistrationNumber);
 		textFieldRegistrationNumber.setColumns(10);
 		
+		/**
+		 * Przycisk odpowiedzialny za dodawanie uwagi
+		 */
 		JButton btnAddNotice = new JButton("Dodaj uwag\u0119");
 		btnAddNotice.addMouseListener(new MouseAdapter() {
 		});
@@ -200,6 +203,9 @@ public class VehiclePropertiesWindow extends JFrame {
 		btnAddNotice.setBounds(21, 655, 103, 35);
 		contentPane.add(btnAddNotice);
 		
+		/**
+		 * Przycisk odpowiedzilany za dodawanie tankowania
+		 */
 		JButton btnAddFueling = new JButton("<html> <center> Dodaj <br> tankowanie </html>");
 		btnAddFueling.addMouseListener(new MouseAdapter() {
 			@Override
@@ -211,6 +217,9 @@ public class VehiclePropertiesWindow extends JFrame {
 		btnAddFueling.setBounds(134, 655, 103, 35);
 		contentPane.add(btnAddFueling);
 		
+		/**
+		 * Przycisk odpowiedzialny za ustawienie przypomienia 
+		 */
 		JButton btnReminder = new JButton("Przypomnienie");
 		btnReminder.setBounds(247, 655, 103, 35);
 		contentPane.add(btnReminder);
@@ -251,12 +260,16 @@ public class VehiclePropertiesWindow extends JFrame {
 		try {
             Connection connection = JavaDB.connectToDB();
             Statement stat = connection.createStatement();
-            // Polecenie wyszukania
+            /**
+             * Polecenie wyszukania
+             */
             String searchSQL = "SELECT * FROM Vehicle Where Id ='"+vehicleId+"';";
             ResultSet result = stat.executeQuery(searchSQL);
             System.out.println("wynik polecenia:\n" + searchSQL);
             
-            //dodawanie wartoœci do textBoxów
+            /**
+             * dodawanie wartoœci do textBoxów
+             */
             while (result.next()) {
             	textFieldVehicleType.setText(result.getString("vehicleType"));
             	textFieldVehicleMark.setText(result.getString("mark"));
