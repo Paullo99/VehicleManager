@@ -1,6 +1,5 @@
 package Views;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -11,7 +10,6 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import com.toedter.calendar.JCalendar;
 
-import Classes.Refuelling;
 import Classes.Service;
 import DB.JavaDB;
 

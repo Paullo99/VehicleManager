@@ -1,6 +1,5 @@
 package Views;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -9,7 +8,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JRadioButton;
 import com.toedter.calendar.JCalendar;
 
-import Classes.Insurance;
 import Classes.Review;
 import DB.JavaDB;
 
